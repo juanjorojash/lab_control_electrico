@@ -1,0 +1,79 @@
+%\documentclass[]{article}
+\documentclass[tocchapterhead=false,10pt,letterpaper]{report}
+\usepackage[spanish]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+%\usepackage{epstopdf}
+%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{flushend}
+%\usepackage{subfigure}
+\usepackage[rflt]{floatflt}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e} 
+\usepackage{flushend}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\bfseries}{}{0pt}{\Huge}
+
+\renewcommand{\chaptername}{} 
+\begin{document}
+	\renewcommand{\thepage}{\roman{page}}
+	
+\input{Portada.tex}
+\input{Prefacio.tex}
+
+%\addcontentsline{toc}{}{\contentsname}
+\tableofcontents
+\newpage
+$  $
+\input{Lab1.tex}
+\input{Lab2.tex}
+\input{Lab3.tex}
+\input{Lab4.tex}
+\input{Lab5.tex}
+\input{Lab6.tex}
+\input{Lab7.tex}
+\input{Lab8.tex}
+
+\input{Bibliografia_lab.txt}
+
+\appendix
+
+\chapter{Informe de evidencias: TECDIGITAL}
+
+
+El reporte que se sube al TECDIGITAL debe ser un archivo PDF. Dicho informe debe subirse como máximo ocho días de haberse finalizado en laboratorio. Adicionalmente, cada informe se debe contener las siguiente partes:
+
+\begin{enumerate}
+	\item Identificación del laboratorio, Autores, fecha.
+	\item Resumen
+	\item Objetivos
+	\item Descripción de la actividad x.
+	\item Planeación y evidencia fotográfica de los circuitos. 
+	\item Evidencia de los resultados obtenidos (gráficas, tablas, imágenes, etc ).
+	\item Análisis de las preguntas planteadas en la actividad.
+	\item Referencias.
+\end{enumerate}
+
+Si el laboratorio posee $n$ actividades los pasos 4,5,6 y 7 se repiten entonces $n$ veces. 
+
+\section{Formato del informe}
+ A continuación se muestra un ejemplo del formato esperado.
+ 
+\includepdf{MachoteLABS.pdf}
+
+\newpage
+	
+	
+\end{document}
