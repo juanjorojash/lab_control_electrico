@@ -3,6 +3,7 @@
 \usepackage{siunitx}
 \usepackage{float}
 \usepackage{tikz}
+\usepackage{tikz-cd}
 \usepackage{url}
 \usepackage[siunitx,american,RPvoltages]{circuitikz}
 \ctikzset{capacitors/scale=0.7}
@@ -31,7 +32,6 @@
 \usepackage{elements}
 \usepackage{verbatim}
 \usetikzlibrary{mindmap,trees,backgrounds}
- 
 \definecolor{color_mate}{RGB}{255,255,128}
 \definecolor{color_plas}{RGB}{255,128,255}
 \definecolor{color_text}{RGB}{128,255,255}
@@ -42,3 +42,9 @@
 \usepackage{etoolbox}
 \usepackage{schemata}
 \newcommand\diagram[2]{\schema{\schemabox{#1}}{\schemabox{#2}}}
+\usepackage{listings}
+\usepackage{csvsimple}
+\input{comunes/arduinoLanguage.tex}
+\usepackage{geometry} 
+\usepackage{fancyhdr}
+\usepackage{lmodern}

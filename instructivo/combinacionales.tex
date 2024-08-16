@@ -1,4 +1,4 @@
-\chapter{Laboratorio: Programación de funciones combinacionales.}
+\chapter{Programación de funciones combinacionales.}
 
 \section{Objetivos}
 Este es un laboratorio introductorio que busca:
@@ -43,7 +43,7 @@ F(a,b,c)=ab+\bar{a}\bar{b}c
 
 La expresión anterior posee una representación en suma de productos (SDP), puede ser implementada en C de la siguiente forma:
 
-		 \begin{lstlisting}[language=C++]
+		 \begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 		bool F(bool a,bool b,bool c){
 			return  a&&b||!a&&!b&&c;
 		}
@@ -71,7 +71,7 @@ F(a,b,c)=\overline{\overline{ab}\cdot\overline{\overline{\overline{\bar{a}\bar{b
 
 La expresión \eqref{Ec5} se encuentra en términos de conectivas NAND de dos entradas y se puede implementar en ARDUINO  de la siguiente forma:
 {\footnotesize 
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 bool F(bool a, bool b, bool c){
 	bool resul = false;
 	resul = NAND(NAND(a,b),NAND(NAND(NAND(NAND(a,true),NAND(b,true)),true),c));
@@ -81,7 +81,7 @@ bool F(bool a, bool b, bool c){
 }
 donde la NAND de dos entradas es:
 
-		\begin{lstlisting}[language=C++]
+		\begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 		bool NAND(bool x, bool y){
 			return !(x && y);
 		}
@@ -103,7 +103,7 @@ La ecuación de un Mux $4 \times 1$ es la siguiente,
 	F(I_0,I_1,I_2,I_3,S_0,S_1)=I_0\bar{S_1}\bar{S_0}+I_1\bar{S_1}S_0+I_2S_1\bar{S_0}+I_3S_1S_0  \;\; .
 \end{equation} El código para implementar dicho multiplexor es similar al siguiente,
 {\footnotesize 
-\begin{lstlisting}[language=C]
+\begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 bool F(bool I0,bool I1,bool I2,bool I3,bool S1,bool S0){
 	return (I0&&!S1&&!S0 || I1&&!S1&&S0 || I1&&S1&&!S0 || I3&&S1&&S0) ;
 }
@@ -114,14 +114,14 @@ Los circuitos que realizan función inversa del multiplexor se  llama \href{http
 Otro ejemplo de circuito combinacional son los \href{URL}{Decodificadores} y \href{https://es.wikipedia.org/wiki/Codificador}{Codificadores}.  Un codificador es un circuito combinacional con $2^{n}$ entradas y $n$ salidas, cuya misión es presentar en la salida el código binario correspondiente a la entrada activada. Mientras que un decodificador hace el trabajo inverso, recibe un código binario y lo transforma en cualquier otro código, ya sea  binarios como el Gray o exceso 3; o otras reprentaciones numericas: octal, decimal, hexagecimal. La figura \ref{fig:decoderexample} muestra la implementan digital de un decodificador de 2 a 4 líneas, la tabla de verdad del circuito y las ecuaciones características de cada salida. 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{Imagenes/Decoder_Example}
+	\includegraphics[width=0.7\linewidth]{fig/Decoder_Example.png}
 	\caption{Decodificador de código binario de dos bits a cuatro líneas de salida.  }
 	\label{fig:decoderexample}
 \end{figure}
 
 Una posible implementación para Arduino de este decodificador es la siguiente.
 
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 	byte  DECO (bool A0, bool A1)
 	{
 		int i=0;
@@ -202,32 +202,3 @@ Implemente en un Arduino un decodificador de 3 bits a Octal. En otro Arduino pro
 ¿La tabla de verdad del codificador es idéntica a la teórica o esperada?
 ¿La tabla de verdad del decodificador es idéntica a la teórica o esperada?
 ¿Como es la salida del segundo Arduino respecto a las entradas del primero?
-
-%\section{Informe de evidencias para el TECDIGITAL}
-%
-% Para cada actividad copie los resultados que se imprimieron en el puerto serial. Adicionalmente, para las actividades 2 y 3 muestre las fotografías de los circuitos.
-% 
-% El informe que se sube al TEC DIGITAL debe ser un archivo PDF, con las siguiente partes:
-% 
-% \begin{enumerate}
-% 	\item Identificación del laboratorio, Autores, fecha.
-% 	\item Resumen
-% 	\item Objetivos
-% 	\item Descripción de la actividad x.
-% 	\item Evidencia fotográfica de los circuitos. 
-% 	\item Evidencia de los resultados obtenidos (gráficas, tablas, imágenes, etc ).
-% 	\item Análisis de las preguntas planteadas en la actividad.
-% 	\item Referencias.
-% \end{enumerate}
-% 
-% Si el laboratorio posee x actividades los pasos 4,5,6 y 7 se repiten x veces. 
-
-
-%\begin{thebibliography}{9}
-%	\bibitem{texbook}
-%	Margolis, Michael, Brian Jepson, and Nicholas Robert Weldin. Arduino cookbook: recipes to begin, expand, and enhance your projects. O'Reilly Media, 2020.
-%
-%\end{thebibliography}
-
-
-
