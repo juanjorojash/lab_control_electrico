@@ -18,7 +18,7 @@
 		
 		// Configuracion de Pines de entrada y salida
 		void setup(){
-			Serial.begin(9600);
+			Serial.begin(115200);
 			// Serial.println("-----");
 			// Serial.println((sizeof(PinEntrada)/2));
 			// Serial.println((sizeof(PinSalidas)/2));
