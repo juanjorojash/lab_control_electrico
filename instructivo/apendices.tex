@@ -1,0 +1,236 @@
+\chapter{Repositorio de código}
+\label{ap:osc}
+\section{Código para sección \ref{l2:a1}}
+\label{ApendiceA}
+
+{\scriptsize 
+    \begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
+    /*
+      ASCII table
+    
+      Prints out byte values in all possible formats:
+      - as raw binary values
+      - as ASCII-encoded decimal, hex, octal, and binary values
+    
+      For more on ASCII, see http://www.asciitable.com and http://en.wikipedia.org/wiki/ASCII
+    
+      The circuit: No external hardware needed.
+    
+      created 2006
+      by Nicholas Zambetti <http://www.zambetti.com>
+      modified 9 Apr 2012
+      by Tom Igoe
+    
+      This example code is in the public domain.
+    
+      https://www.arduino.cc/en/Tutorial/BuiltInExamples/ASCIITable
+    */
+    
+    void setup() {
+      //Initialize serial and wait for port to open:
+      Serial.begin(9600);
+      while (!Serial) {
+        ;  // wait for serial port to connect. Needed for native USB port only
+      }
+    
+      // prints title with ending line break
+      Serial.println("ASCII Table ~ Character Map");
+    }
+    
+    // first visible ASCIIcharacter '!' is number 33:
+    int thisByte = 33;
+    // you can also write ASCII characters in single quotes.
+    // for example, '!' is the same as 33, so you could also use this:
+    // int thisByte = '!';
+    
+    void loop() {
+      // prints value unaltered, i.e. the raw binary version of the byte.
+      // The Serial Monitor interprets all bytes as ASCII, so 33, the first number,
+      // will show up as '!'
+      Serial.write(thisByte);
+    
+      Serial.print(", dec: ");
+      // prints value as string as an ASCII-encoded decimal (base 10).
+      // Decimal is the default format for Serial.print() and Serial.println(),
+      // so no modifier is needed:
+      Serial.print(thisByte);
+      // But you can declare the modifier for decimal if you want to.
+      // this also works if you uncomment it:
+    
+      // Serial.print(thisByte, DEC);
+    
+    
+      Serial.print(", hex: ");
+      // prints value as string in hexadecimal (base 16):
+      Serial.print(thisByte, HEX);
+    
+      Serial.print(", oct: ");
+      // prints value as string in octal (base 8);
+      Serial.print(thisByte, OCT);
+    
+      Serial.print(", bin: ");
+      // prints value as string in binary (base 2) also prints ending line break:
+      Serial.println(thisByte, BIN);
+    
+      // if printed last visible character '~' or 126, stop:
+      if (thisByte == 126) {  // you could also use if (thisByte == '~') {
+        // This loop loops forever and does nothing
+        while (true) {
+          continue;
+        }
+      }
+      // go on to the next character
+      thisByte++;
+    }
+    \end{lstlisting}
+}
+
+
+
+\section{Código actividad 2}
+\label{ApendiceB}
+{\scriptsize 
+    \begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
+    /*
+    Instituto Tecnológico de Costa Rica
+    LAB #1 de Laboratorio de Control Eléctrico.
+    Fecha: 25/01/2023
+    Ing. Luis D. Murillo
+    
+    Este programa apaga el LED cuando se presiona el botón. 
+    
+    */
+    // Declaracione de entradas y salidas
+    const int BUTTON =2;  // Boton conectado al pin 2
+    const int LED =4;     // LED conectado al pin 4
+    
+    // CONFIGURACION DE ENTRADAS Y SALIDAS
+    void setup() {
+        pinMode(LED, OUTPUT);    // configuramos el pin del LED como salida
+        digitalWrite(LED, HIGH);  // Encendemos el LED
+        pinMode(BUTTON, INPUT);  // configuramos el pin del botón como entrada
+    }
+    // PROGRAMA PRINCIPAL
+    void loop() {
+        bool buttonState = digitalRead(BUTTON);  // leemos el estado del botón
+        if (buttonState == HIGH) {
+            digitalWrite(LED, LOW);  // apagamos el LED
+        } else {
+            digitalWrite(LED, HIGH);   // encendemos el LED
+        }
+    }
+    \end{lstlisting}
+}	
+
+
+\section{Código actividad 3}
+
+{\scriptsize 
+		
+	\begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
+		 /*
+		Instituto Tecnológico de Costa Rica
+		Laboratorio de Control Eléctrico.
+		Lab #1: Conectiva logicas y señal analógica
+		Fecha: 24/01/2023
+		Ing. Luis D. Murillo
+		
+		Implementación de Funciones Lógicas AND, OR, XOR, NAND, NOR de 2 entradas
+		*/
+		// Declaracione de constantes
+			const int PinEntrada[2]={2,3};
+			const int PinSalidas[5]={4,5,6,7,8};
+			const int PinAnalogico[2] = {A0, A1};
+			int ValorAnalojLeido[2]={0,0};
+			float ValorVoltage[2]={0.0,0.0};
+			boolean Mapa_entradas[2];
+			boolean ResultadoLogico[5]={false, false, false, false, false};
+		
+		// Configuracion de Pines de entrada y salida
+		void setup(){
+			Serial.begin(9600);
+			Serial.println("-----");
+			Serial.println((sizeof(PinEntrada)/2));
+			Serial.println((sizeof(PinSalidas)/2));
+			Serial.println("-----");
+		
+		// Initializa los pines:
+		for (int i = 0; i < (sizeof(PinSalidas)/2); i++) {
+			if (i<(sizeof(PinEntrada)/2)) {
+				pinMode( PinEntrada[i], INPUT);
+			}
+			pinMode(PinSalidas[i], OUTPUT);
+			}
+		delay(2);
+		}
+		
+		void loop()
+		{		
+			//LECTURA DE LAS ENTRADAS Y SALIDAS 	
+			for(int i=0; i<(sizeof(PinSalidas)/2);i++){
+				if(i<(sizeof(PinEntrada)/2)){
+					// Lectura de entradas digitales
+					Mapa_entradas[i]=digitalRead(PinEntrada[i]);
+					// Lectura de los valores analógicos
+					ValorAnalojLeido[i] = analogRead(PinAnalogico[i]);
+					// Funcion de mapeo :
+				ValorVoltage[i]= (map(ValorAnalojLeido[i], 0, 1023, 0, 500)/100.0);
+				}
+			// Escritura de salida digital
+			digitalWrite(PinSalidas[i],ResultadoLogico[i]);
+			}
+		
+		//EJECUCION DEL PROGRAMA
+			ResultadoLogico[0]=AND(Mapa_entradas[1],Mapa_entradas[0]);
+			ResultadoLogico[1]=OR(Mapa_entradas[1],Mapa_entradas[0]);
+			ResultadoLogico[2]=XOR(Mapa_entradas[1],Mapa_entradas[0]);
+			ResultadoLogico[3]=NAND(Mapa_entradas[1],Mapa_entradas[0]);
+			ResultadoLogico[4]=NOR(Mapa_entradas[1],Mapa_entradas[0]);
+		
+		//IMPRESION DE RESULTADOS ENTRADA Y SALIDAS
+		
+			Serial.print(Mapa_entradas[0]);
+			Serial.print(", ");
+			Serial.print(ValorVoltage[0]);
+			Serial.print(", ");
+			Serial.print(Mapa_entradas[1]);
+			Serial.print(", ");
+			Serial.print(ValorVoltage[1]);
+			Serial.print(", ");
+			Serial.println(ResultadoLogico[0]);
+			Serial.print(", ");
+			Serial.print(ResultadoLogico[1]);
+			Serial.print(", ");
+			Serial.print(ResultadoLogico[2]);
+			Serial.print(", ");
+			Serial.print(ResultadoLogico[3]);
+			Serial.print(", ");
+			Serial.println(ResultadoLogico[4]);
+		}
+		
+		//DEFINICION DE LAS FUNCIONES LÓGICAS
+		// Forma de programacion Booleana
+		bool AND (bool X, bool Y ){
+		return (X && Y ); 
+		}
+		
+		// Forma de programacion con estructuras de control
+		bool OR (boolean X, bool Y ){
+		if (X || Y) {return true;} 
+		else {return false;}
+		}
+		
+		// Completar código
+		bool XOR (bool X, bool Y ){
+				; 
+		}
+		
+		bool NAND (bool X, bool Y ){
+				; 
+		}		
+		
+		bool NOR (bool X, bool Y ){
+				; 
+		}
+		\end{lstlisting}
+}
