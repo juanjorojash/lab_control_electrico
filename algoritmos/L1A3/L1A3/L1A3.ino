@@ -76,7 +76,7 @@
 			Serial.print(ResultadoLogico[3]);
 			Serial.print(",");
 			Serial.println(ResultadoLogico[4]);
-      delay(10);
+      delay(1);
 		}
 		
 		//DEFINICION DE LAS FUNCIONES LÓGICAS

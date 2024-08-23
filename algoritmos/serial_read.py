@@ -8,7 +8,7 @@ from drawnow import drawnow
 import csv
 
 # Inicializa el serial
-ArduinoData = serial.Serial('COM9', baudrate=115200, bytesize=8,
+ArduinoData = serial.Serial('COM17', baudrate=115200, bytesize=8,
                             parity='N', stopbits=1, timeout=1.5)
 
 # verfica que la instancancia serial esté cerrada
@@ -28,7 +28,6 @@ seconds = 0
 
 # Crea la lista vacía para almacenar el tiempo y la distancia
 time_data = []
-dist_data = []
 Xdata = []
 Ydata = []
 aXdata = []
@@ -63,7 +62,6 @@ recep = ArduinoData.read_until(b'\r\n')
 while True:
     # Lee el primer byte de la información transmitidad por
     #  en el serial
-    seconds += 1 
     X_text = ArduinoData.read_until(b',')[:-1].decode("ascii")
     X = bool(X_text)
     aX_text = ArduinoData.read_until(b',')[:-1].decode("ascii")
