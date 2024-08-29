@@ -1,31 +1,28 @@
 \chapter{Programación de funciones combinacionales.}
 
-\section{Objetivos}
-Este es un laboratorio introductorio que busca:
+\section{\obj}
+\capacidad
 \begin{itemize}
-	{\small
-	 \item  Programar funciones booleanas combinacionales en Arduino.
-	 \item  Verificar la compuertas NAND y NOR son en si mismas un conjunto Universal, equivalentes a el conjunto de conectivas lógicas OR, AND y NOT.
-	\item  	Verificar que a partir de los mintérminos de una expresión lógica se obtienen los circuitos con compuertas NAND y de los maxtérminos, los circuitos con compuertas NOR.
-	\item  Verificar que para obtener la solución mínima de un circuito lógico, es necesario sintetizar los circuitos tanto por mintérminos como por maxtérminos. 
-	\item Programar multiplexores $4\times1$, $8\times1$.
-	\item Programar un DECOdificador Binario a Decimal.
- }
+    \item  Programar funciones booleanas combinacionales en Arduino.
+    \item  Verificar la compuertas NAND y NOR son en si mismas un conjunto Universal, equivalentes a el conjunto de conectivas lógicas OR, AND y NOT.
+    \item Verificar que a partir de los mintérminos de una expresión lógica se obtienen los circuitos con compuertas NAND y de los maxtérminos, los circuitos con compuertas NOR.
+    \item Verificar que para obtener la solución mínima de un circuito lógico, es necesario sintetizar los circuitos tanto por mintérminos como por maxtérminos. 
+    \item Programar multiplexores $4\times1$ y $8\times1$.
+    \item Programar un Decodificador Binario a Decimal.
 \end{itemize} 
 
 
-\section{Equipos y materiales}
-Para este laboratorio de necesitaran:
-\begin{itemize} 
-	{\small \item 1 Arduino UNO o equivalente: MEGA o ESP32.
-	\item 1 Multímetro.
-	\item 10 Resistencias de 270 o 330 $\Omega$.
-	\item 5 Resistencias de 1k$\Omega$.
-	\item 10 interruptores pulsadores.
-	\item 1 Protoboard.
-	\item 10 Diodes emisor de luz (LEDs).
-	\item 1 Computadora portátil.}
-\end{itemize}
+\section{\mat}
+\begin{itemize}
+    \item 1 Arduino UNO o equivalente: MEGA o ESP32.
+    \item 1 Multímetro.
+    \item 10 Resistencias de 270 o 330 $\Omega$.
+    \item 5 Resistencias de 1k$\Omega$.
+    \item 10 interruptores pulsadores.
+    \item 1 Protoboard.
+    \item 10 Diodes emisor de luz (LEDs).
+    \item 1 Computadora portátil.
+\end{itemize} 
 
 \section{Marco de referencia}
 
@@ -38,14 +35,14 @@ Puede encontrar información adicional en el siguiente enlace \href{https://es.w
 Un circuito combinacional  puede ser representado de distintas formas, pero la más común es mediante una ecuación lógica, por ejemplo: 
 \begin{equation}
 \label{Ec1}
-F(a,b,c)=ab+\bar{a}\bar{b}c
+F(a,b,c)=a\cdot b+\bar{a}\cdot \bar{b}\cdot c
 \end{equation}
 
 La expresión anterior posee una representación en suma de productos (SDP), puede ser implementada en C de la siguiente forma:
 
 		 \begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 		bool F(bool a,bool b,bool c){
-			return  a&&b||!a&&!b&&c;
+			return  (a && b) || (!a && !b && c);
 		}
 		\end{lstlisting} 
 
@@ -54,28 +51,28 @@ Existen ocho formas estándar de implementar la ecuación \eqref{Ec1} digital-me
 Por otra parte, la ecuación \eqref{Ec1} es equivalente a la expresión booleana  NAND/NAND si se niega dos veces y se aplica el \href{https://es.wikipedia.org/wiki/Leyes_de_De_Morgan}{Teorema de Morgan}.
 
 
-\begin{eqnarray}
+\begin{align}
 \label{Ec2}
-F(a,b,c)=ab+\bar{a}\bar{b}c \\
-F(a,b,c)=\overline{\overline{ab+\bar{a}\bar{b}c }} \\  \label{Ec3}
-F(a,b,c)=\overline{\overline{ab}\cdot\overline{\bar{a}\bar{b}c}}
-\end{eqnarray}
+F(a,b,c)&=a\cdot b+\bar{a}\cdot \bar{b} \cdot c \\
+F(a,b,c)&=\overline{\overline{a\cdot b+\bar{a}\cdot \bar{b}\cdot c}} \\  \label{Ec3}
+F(a,b,c)&=\overline{\overline{a\cdot b}\cdot\overline{\bar{a}\cdot \bar{b}\cdot c}}
+\end{align}
 
 
 Notece que la ecuacion \eqref{Ec3} necesita conectivas lógicas (funciones) de 2 y 3 entradas. Esto no es un problema cuando se implementa en SOFTWARE, pero sí se requiere hacer una implementación fisica hay que aplicar el Algebra Booleana para dejar la expresión en términos de conectivas de solamente dos entradas. Lo que se hace es que el término de tres literales, le aplicamos una doble negación tal como sigue.
 
 \begin{eqnarray}
 \label{Ec5}
-F(a,b,c)=\overline{\overline{ab}\cdot\overline{\overline{\overline{\bar{a}\bar{b}}}\cdot c}} 
+F(a,b,c)=\overline{\overline{a\cdot b}\cdot\overline{\overline{\overline{\bar{a}\cdot \bar{b}}}\cdot c}} 
 \end{eqnarray}
 
 La expresión \eqref{Ec5} se encuentra en términos de conectivas NAND de dos entradas y se puede implementar en ARDUINO  de la siguiente forma:
 {\footnotesize 
 \begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 bool F(bool a, bool b, bool c){
-	bool resul = false;
-	resul = NAND(NAND(a,b),NAND(NAND(NAND(NAND(a,true),NAND(b,true)),true),c));
-	return resul;
+	bool result = false;
+	result = NAND(NAND(a,b),NAND(NAND(NAND(NAND(a,true),NAND(b,true)),true),c));
+	return result;
 }
 \end{lstlisting} 
 }
@@ -95,17 +92,19 @@ Un \href{https://es.wikipedia.org/wiki/Multiplexor}{multiplexor} (Mux) es un cir
 MUX=\sum_{i=0}^{2^{n}-1} I_{i}\cdot \mathbb{S}_i
 \end{equation}
 donde $\mathbb{S}_i$  es la $i$-ésima permutacion de las entradas de selección. A modo de ejemplo un Mux $2 \times 1$
- posee dos entradas digitales y una de control y una salida. Un Mux $4 \times 1$ posee cuatro entradas digitales más dos de control y una salida, Un Mux $8 \times 1$ posee ocho entradas digitales más tres de control y una salida.
+ posee dos entradas digitales, una de control y una salida. Un Mux $4 \times 1$ posee cuatro entradas digitales, dos de control y una salida, Un Mux $8 \times 1$ posee ocho entradas digitales, tres de control y una salida.
  
 La ecuación de un Mux $4 \times 1$ es la siguiente,
 
 \begin{equation}
-	F(I_0,I_1,I_2,I_3,S_0,S_1)=I_0\bar{S_1}\bar{S_0}+I_1\bar{S_1}S_0+I_2S_1\bar{S_0}+I_3S_1S_0  \;\; .
-\end{equation} El código para implementar dicho multiplexor es similar al siguiente,
+	F(I_0,I_1,I_2,I_3,S_0,S_1)=I_0\bar{S_0}\bar{S_1}+I_1\bar{S_0}S_1+I_2S_0\bar{S_1}+I_3S_0S_1
+\end{equation} 
+
+El código para implementar dicho multiplexor es similar al siguiente,
 {\footnotesize 
 \begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 bool F(bool I0,bool I1,bool I2,bool I3,bool S1,bool S0){
-	return (I0&&!S1&&!S0 || I1&&!S1&&S0 || I1&&S1&&!S0 || I3&&S1&&S0) ;
+	return (I0&&!S0&&!S1 || I1&&!S0&&S1 || I2&&S1&&!S0 || I3&&S0&&S1) ;
 }
 \end{lstlisting}
 }
@@ -128,10 +127,10 @@ Una posible implementación para Arduino de este decodificador es la siguiente.
 		bool D[4]={false, false, false, false};
 		byte deco=0;
 	
-		D[0]=!A1&&!A0;
-		D[1]=!A1&&A0;
-		D[2]=A1&&!A0;
-		D[3]=A1&&A0;
+		D[0]=!A1 && !A0;
+		D[1]=!A1 && A0;
+		D[2]=A1 && !A0;
+		D[3]=A1 && A0;
 	
 		for (i=0; i<sizeof(D);i++)
 		{
@@ -149,10 +148,10 @@ Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. 
 
 \subsection{Actividad 1}
 
-Programe en Arruino una lógica combinacional que resuelva el siguiente problema.  En una planta industrial se desea automatizar un motor y una alarma de acuerdo a 4 sensores llamados a, b, c, d.  La señal del motor se representa por la función lógica f1, y se validará  cuando el sensor  a y b estén activos, o cuando  este b y  este el sensor d o cuando estén a, c y d. Por otro lado, la señal de  alarma (función f2), se activa siempre que estén todos los sensores apagados excepto a o todos apagados excepto c o  estén c y d encendidos y el resto apagados. También la alarma se encienden cuando todos los sensores son activados o cuando estén todos excepto d o todos excepto c.
+Programe en Arruino una lógica combinacional que resuelva el siguiente problema.  En una planta industrial se desea automatizar un motor y una alarma de acuerdo a 4 sensores llamados $a$, $b$, $c$ y $d$  La señal del motor se representa por la función lógica $f1$, y se validará  cuando los sensores $a$ y $b$ estén encendidos, o cuando los sensores $b$ y $d$ estén encendidos, o cuando los sensores $a$, $c$ y $d$ están encendidos. Por otro lado, la señal de  alarma se representa con la función lógica $f2$, se activa siempre que estén todos los sensores apagados excepto $a$ o todos apagados excepto $c$ o estén encendidos $c$ y $d$ y el resto apagados. También la alarma se enciende cuando todos los sensores están encendidos o cuando están todos encendidos excepto $d$ o todos encendidos excepto $c$.
  
- En el Arduino los Pines $\left\lbrace 0,1,2,3\right\rbrace $ serán las entradas digitales {a,b,c,d}. Las salidas o respuestas de las funciones se dividen en dos grupos, los pines $\left\lbrace 5,6,7\right\rbrace $ se reservan para f1. Se deben implementar tres funciones:  la suma de productos (SDP), el producto de suma(PDS) y la funcion resuelta por conectivas NAND/NAND.   Por otro lado la función f2  mostrar\'{a} su respuesta mediante los pines 
- $\left\lbrace 8,9,10\right\rbrace $, dicha función es implementada mediante SDP, PDS y conectivas NOR/NOR.
+ En el Arduino los pines $\left\lbrace 0,1,2,3\right\rbrace$ serán las entradas digitales $\left\lbrace a,b,c,d\right\rbrace$. Las salidas o respuestas de las funciones se dividen en dos grupos, los pines $\left\lbrace 5,6,7\right\rbrace $ se reservan para $f1$. Se deben implementar tres funciones:  la suma de productos $(SDP)$, el producto de suma $(PDS)$ y la función resuelta por conectivas $NAND/NAND$.   Por otro lado la función $f2$  mostrará su respuesta mediante los pines 
+ $\left\lbrace 8,9,10\right\rbrace $, dicha función es implementada mediante $SDP$, $PDS$ y conectivas $NOR/NOR$.
  
  
 \subsubsection{Conteste las preguntas:}
