@@ -21,12 +21,12 @@
 
 \documentclass[12pt,letterpaper]{report}
 \input{comunes/preamble}
-\geometry{left=18mm,right=18mm,top=21mm,bottom=21mm,headheight=15pt}
-
-\setlength\parindent{0pt} % Removes all indentation from paragraphs
-
-\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+\usepackage{geometry} 
+\usepackage{fancyhdr}
 \pagestyle{fancy}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+\geometry{left=18mm,right=18mm,top=21mm,bottom=21mm,headheight=15pt}
 
 %----------------------------------------------------------------------------------------
 \newcommand{\escuela}{Escuela de Ingeniería Electromecánica}
@@ -46,8 +46,8 @@
 
 \addto\captionsspanish{\renewcommand{\chaptername}{Laboratorio}}
 \addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
-\begin{document}
 
+\begin{document}
 
 \begin{titlepage}
 
@@ -74,15 +74,18 @@
 \curso\\
 \end{large}
 \vspace*{2.5in}
-\begin{Large}
+\begin{tiny}
 \textbf{\today}\\
 Versión: 0.1\\
-\end{Large}
-\rule{80mm}{0.1mm}\\
-\vspace*{0.1in}
-\begin{large}
-Juan J. Rojas. Luis Diego Murillo. Luis Gomez.\\
-\end{large}
+\end{tiny}
+\rule{60mm}{0.1mm}\\
+\vspace*{0.1 in}
+Dr.-Eng. Luis Diego Murillo \\
+Dr.-Eng. Juan J. Rojas
+%\author[1]{Luis Diego Murillo}\\
+%\author[2]{Juan J. Rojas}\\
+%\affil[1]{Escuela de Ingeniería Electromecánica}
+%\affil[2]{Escuela de Ingeniería Electromecánica}
 \end{center}
 
 \end{titlepage}
@@ -91,7 +94,12 @@ Juan J. Rojas. Luis Diego Murillo. Luis Gomez.\\
 
 \input{instructivo/introduccion_arduino}
 \input{instructivo/combinacionales}
-%\input{instructivo/flip_flops}
+\input{instructivo/flip_flops}
+\input{instructivo/cableada}
+\input{instructivo/tension_reducida}
+\input{instructivo/variadores}
+\input{instructivo/logo}
+\input{instructivo/automatas}
 
 %----------------------------------------------------------------------------------------
 %	APPENDIX

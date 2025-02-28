@@ -1,10 +1,8 @@
-\titleformat{\chapter}[display]{\normalfont\LARGE\bfseries}{}{1em}{\thechapter.~}
-
 \chapter{Laboratorio: Lógica convencional, Arranque-pare sencillo y reversible.}
 
 
-\section{Objetivos}
-Este  laboratorio busca:
+\section{\obj}
+\capacidad
 \begin{itemize}
 	{\small
 	 \item  Estudiar  las representaciones simbólicas normalizadas de los elementos de control eléctrico, según norma NEMA ICS 19-2002 y IEC 60617.
@@ -42,14 +40,14 @@ Un contactor es un dispositivo electromecánico utilizado para controlar la cone
 	\centering
 	\begin{subfigure}[b]{0.4\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Imagenes/Contactor}
+		\includegraphics[width=\textwidth]{fig/Contactor}
 		\caption{Contactor de proposito general Eaton \cite{Eaton1}.}
 		\label{fig:contactor}
 	\end{subfigure}
 \hfill
 	\begin{subfigure}[b]{0.4\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Imagenes/relevador}
+		\includegraphics[width=\textwidth]{fig/relevador}
 		\caption{Relé de protección térmica Eaton \cite{Eaton2}.}
 		\label{fig:rele}
 	\end{subfigure}
@@ -82,14 +80,14 @@ Es importante tener en cuenta que estas curvas de tiempo de disparo son solo una
 	\centering
 	\begin{subfigure}[b]{0.48\textwidth}
 		\centering
-	\includegraphics[width=\textwidth]{Imagenes/CurvasClass}
+	\includegraphics[width=\textwidth]{fig/CurvasClass}
 	\caption{Curvas NEMA Clase 10 , 20 , 30.}
 	\label{fig:curvasclass}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.5\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Imagenes/Cordinación}
+		\includegraphics[width=\textwidth]{fig/Cordinación}
 		\caption{Coordinacion de curvas y zona de daño del motor.}
 		\label{fig:cordinacion}
 	\end{subfigure}
@@ -124,7 +122,29 @@ Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. 
  Estudie toda la simbología NEMA, Tabla 1 y Tabla 2 de la referencia \cite{Scheneider2} y asocie los con el elementos físicos y su funcionamiento.
  Deduzca la ecuación lógica del circuito eléctrico de control, para esto use un mapa de Karnaugh o la ecuacion caracteristica del cerrojo S-R prioridad al reset.
  Realice el alambrado del circuito de control y luego del circuito de potencia del arranque sencillo de un motor trifásico de 1/2 hp.
- 
+
+\newpage
+
+\begin{equation*}
+    M^+ = \overline{P} \cdot \overline{Sc} \cdot (A+M)
+\end{equation*}
+
+ \begin{figure}[H]
+    \centering
+        \begin{tikzpicture}[circuit plc ladder,scale=1.5]
+        \draw(0,0)  
+        to [ncpb,l=$P$] ++ (1,0) coordinate(M1)
+        to [nopb,l=$A$] ++ (1,0) coordinate(M2)
+        to [esource, l=$M$] ++ (1,0)
+        to [contact NC={info={$Sc$}}] ++ (1,0) coordinate(laddertopright)
+        (M1) -- ++ (0,-0.5) 
+        to [contact NO={info={$M$}}] ++ (1,0) -- (M2)
+        ;
+        \ladderrungend{1}
+        \ladderpowerrails
+        \end{tikzpicture}
+ \end{figure}
+
  
 \subsubsection{Conteste las preguntas:}
 
@@ -134,6 +154,35 @@ Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. 
 \subsection{Actividad 3}
 
 Deduzca el circuito de control de un arranque-pare-reversive. Realice el alambrado del circuito de control y luego del circuito de potencia del circuito para un trifásico de 1/2 hp.
+
+
+ \begin{align*}
+    F^+ &= \overline{P} \cdot \overline{R} \cdot \overline{Sc} \cdot (A_F + F) \\
+    R^+ &= \overline{P} \cdot \overline{F} \cdot \overline{Sc} \cdot (A_R + R)
+ \end{align*}
+
+ \begin{figure}[H]
+    \centering
+        \begin{tikzpicture}[circuit plc ladder,scale=1.5]
+        \draw(0,0)  
+        to [ncpb,l=$P$] ++ (1,0) coordinate(AF1)
+        to [nopb,l=$A_F$] ++ (1,0) coordinate(AF2)
+        to [contact NC={info={$R$}}] ++ (1,0)
+        to [esource, l=$F$] ++ (1,0)
+        to [contact NC={info={$Sc$}}] ++ (1,0) coordinate(laddertopright)
+        (AF1) -- ++ (0,-0.5) 
+        to [contact NO={info={$F$}}] ++ (1,0) -- (AF2)
+        (M1) -- ++ (0,-2) coordinate(AR1)
+        to [nopb,l=$A_R$] ++ (1,0) coordinate(AR2)
+        to [contact NC={info={$F$}}] ++ (1,0)
+        to [esource, l=$R$] ++ (1,0) -- ++ (0,2)
+        (AR1) -- ++ (0,-0.5) 
+        to [contact NO={info={$R$}}] ++ (1,0) -- (AR2)
+        ;
+        \ladderrungend{1}
+        \ladderpowerrails
+        \end{tikzpicture}
+ \end{figure}
 
 \subsubsection{Conteste las preguntas:} 
 

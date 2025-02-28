@@ -1,18 +1,15 @@
+\chapter{Laboratorio:  Programación de variadores de frecuencia y arrancadores suaves.}
 
-  \titleformat{\chapter}[display]{\normalfont\LARGE\bfseries}{}{1em}{\thechapter.~}
-  
-  \chapter{Laboratorio:  Programación de variadores de frecuencia y arrancadores suaves.}
-
-\section{Objetivos}
-Este  laboratorio busca:
+\section{\obj}
+\capacidad
 \begin{itemize}
 	{\small
     \item  Alambrar el circuito de control y potencia del variador.
     \item  Programar un variador de frecuencia segun los requerimientos. 
-	 \item Alambrar el arrancador suave para un motor trifásico.
-	 \item Alambrar un arranque pare reversible usando un arrancador suave de un motor trifásico.
-	 \item Programar el variador de frecuencia.
-	 \item Medir el tiempo de las rampas de aceleración y desaceleración, y vincular con los parámetros programados.
+	\item Alambrar el arrancador suave para un motor trifásico.
+	\item Alambrar un arranque pare reversible usando un arrancador suave de un motor trifásico.
+	\item Programar el variador de frecuencia.
+	\item Medir el tiempo de las rampas de aceleración y desaceleración, y vincular con los parámetros programados.
  }
 \end{itemize} 
 
@@ -41,7 +38,7 @@ La intensidad del motor tiene un comportamiento proporcional a la tensión aplic
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\linewidth]{Imagenes/ControlFase}
+	\includegraphics[width=0.75\linewidth]{fig/ControlFase}
 	\caption{Control por recorte de fase y esquema de un arrancador suave con control bifásico. \cite{SIEMENS}}
 	\label{fig:controlfase}
 \end{figure}
@@ -52,14 +49,14 @@ La intensidad del motor tiene un comportamiento proporcional a la tensión aplic
 	\centering
 	\begin{subfigure}[b]{0.69\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Imagenes/RampasArrancador}
+		\includegraphics[width=\textwidth]{fig/RampasArrancador}
 		\caption{Principio de funcionamiento}
 		\label{fig:rampasarrancador}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Imagenes/3RW3013-1BB14_G_IC03_XX_31074P}
+		\includegraphics[width=\textwidth]{fig/3RW3013-1BB14_G_IC03_XX_31074P}
 		\caption{Imagen del arrancador}
 		\label{fig:3rw3013-1bb14gic03xx31074p}
 		
@@ -72,14 +69,14 @@ La intensidad del motor tiene un comportamiento proporcional a la tensión aplic
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Imagenes/CorrienteMotor}
+		\includegraphics[width=\textwidth]{fig/CorrienteMotor}
 		\caption{Corrientes del motor}
 		\label{fig:corrientemotor}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Imagenes/TorqueMotor}
+		\includegraphics[width=\textwidth]{fig/TorqueMotor}
 		\caption{Torque del motor}
 		\label{fig:torquemotor}
 		
@@ -95,7 +92,7 @@ Un variador de frecuencia (VDF) es un dispositivo que se utiliza para controlar 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\linewidth]{Imagenes/pwm2}
+	\includegraphics[width=0.8\linewidth]{fig/pwm2}
 	\caption{Señales PWM equivalentes a señales sinosoidales de distintas amplitud y frecuencia \cite{Chapman12}.}
 	\label{fig:pwm}
 \end{figure}
@@ -126,7 +123,7 @@ La Figura \ref{fig:ab160} muestra las principales partes del VDF y se detallan a
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{Imagenes/AB160}
+	\includegraphics[width=0.9\linewidth]{fig/AB160}
 	\caption{Esquema del Variador de Frecuencia AB160.\cite{AB160} }
 	\label{fig:ab160}
 \end{figure}
@@ -173,14 +170,14 @@ Si se asume que un motor de inducción  puede entregar un torque máximo de 150\
  	\centering
  	\begin{subfigure}[b]{0.49\textwidth}
  		\centering
- 		\includegraphics[width=\textwidth]{Imagenes/TorqueConstante}
+ 		\includegraphics[width=\textwidth]{fig/TorqueConstante}
  		\caption{Torque carga constante}
  		\label{fig:torqueconstante}
  	\end{subfigure}
  	\hfill
  	\begin{subfigure}[b]{0.49\textwidth}
  		\centering
- 		\includegraphics[width=\textwidth]{Imagenes/TorqueVariable}
+ 		\includegraphics[width=\textwidth]{fig/TorqueVariable}
  		\caption{Torque de carga variable}
  		\label{fig:torquevariable}
  	\end{subfigure}

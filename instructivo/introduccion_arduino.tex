@@ -103,12 +103,100 @@ Elimine el botón y alimente el Arduino con un generador de funciones que brinde
 ¿Cual es la frecuencia de la señal de entrada en que la señal de salida se distorsiona? Es decir, la señal de salida no es  inversa a la señal de entrada. Recuerde capturar las pantallas del osciloscopio en ambos casos.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{fig/Fig1.png}
-	\caption{Diagrama de conexón del botón y LED.}
-	\label{fig:fig1}
+    \tikzset{dig/.style={muxdemux, muxdemux def={Lh=5, Rh=5, NL=2, NB=0, NR=0, w=2}}}
+    \tikzset{BMP280/.style={muxdemux, muxdemux def={Lh=5, Rh=5, NL=0, NB=0, NR=6, w=2}}}
+    \centering
+    \begin{circuitikz} 
+        \draw 
+        (0,3.5) 
+        node[dig] (p){\rotatebox{90}{\small power}}
+        (0,0) 
+        node[dig] (m){\rotatebox{90}{\small digital IO}};
+        \draw (m.blpin 1) node[above left]{\small DIO2};
+        \draw (m.blpin 2) node[above left]{\small DIO4};
+        \draw (p.blpin 1) node[above left]{\small 5V};
+        \draw (p.blpin 2) node[above left]{\small GND};
+        %\draw (-5,-3) node[BMP280,rotate=90] (s){\rotatebox{-90}{\small BMP280}}
+        %(s.brpin 1) node[above right,rotate=90]{\scriptsize SDO}
+        % (s.brpin 2) node[above right,rotate=90]{\scriptsize CSB}
+        % (s.brpin 3) node[above right,rotate=90]{\scriptsize SDA}
+        % (s.brpin 4) node[above right,rotate=90]{\scriptsize SCL}
+        % (s.brpin 5) node[above right,rotate=90]{\scriptsize GND}
+        % (s.brpin 6) node[above right,rotate=90]{\scriptsize VCC}
+        % ;
+        \coordinate (A) at (-8,2.5);
+        \coordinate (B) at (-8,1);
+        \coordinate (C) at (-6,2.5);
+        \coordinate (D) at (-6,1);
+        \coordinate (E) at (-4,2.5);
+        \coordinate (F) at (-4,1);
+        \coordinate (G) at (-4,0.5);
+        \coordinate (H) at (-4,-1);
+        \draw[blue, line width=0.5mm]
+        (p.blpin 1)
+        -|
+        (A)
+        ;
+        \draw[black]
+        (A)
+        to [R, l=\SI{10}{\kilo\ohm}]
+        (B)
+        ;
+        \draw[orange, line width=0.5mm]
+        (B)
+        |-
+        (m.blpin 1)
+        ;
+        \draw[green, line width=0.5mm]
+        (p.blpin 2)
+        -|
+        (C)
+        ;
+        \draw[black]
+        (C)
+        to [push button]
+        (D)
+        ;
+        \draw[orange, line width=0.5mm]
+        (D)
+        |-
+        (m.blpin 1)
+        ;
+        \draw[green, line width=0.5mm]
+        (p.blpin 2)
+        -|
+        (E)
+        ;
+        \draw[black]
+        (E)
+        to[led]
+        (F)       
+        ;
+        \draw[yellow, line width=0.5mm]
+        (F)
+        --
+        (G)
+        ;
+        \draw[black]
+        (G)        
+        to [R,l=\SI{500}{\ohm}]
+        (H)
+        ;
+        \draw[brown, line width=0.5mm]
+        (H)
+        --
+        ++(0,-0.5)
+        --
+        ++(1,0)
+        |-
+        (m.blpin 2)
+        ;        
+        \draw[dashed,blue]
+        (-2.5,6) -- (1,6)node[midway, below]{UNO R4 MINIMA} -- (1,-1.5) -- (-2.5,-1.5) -- cycle;
+    \end{circuitikz}
+    \caption{Conexión de circuito para Actividad 2}
+    \label{fig:pres1}
 \end{figure}
-
 
 \subsection{Actividad 3}
 
