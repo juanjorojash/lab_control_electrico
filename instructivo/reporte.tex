@@ -18,16 +18,24 @@
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
-
 \documentclass[12pt,letterpaper]{report}
-\input{comunes/preamble}
+\makeatletter
+\def\input@path{{../comunes/}{../instructivo/}{../data/}{../algoritmos/}}
+\makeatother
+\input{preamble}
+\usepackage{geometry} 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+\geometry{left=18mm,right=18mm,top=21mm,bottom=21mm,headheight=15pt}
 
 %----------------------------------------------------------------------------------------
 \newcommand{\escuela}{Escuela de Ingeniería Electromecánica}
 \newcommand{\programa}{Ingeniería en Mantenimiento Industrial}
 \newcommand{\curso}{Laboratorio de Control Eléctrico}
 \lhead{Instructivo de \curso}
-\rhead{\begin{picture}(0,0) \put(-60,0){\includegraphics[width=20mm]{fig/logo.png}} \end{picture}}
+\rhead{\begin{picture}(0,0) \put(-60,0){\includegraphics[width=20mm]{logo.png}} \end{picture}}
 \newcommand{\obj}{Objetivos}
 \newcommand{\mat}{Materiales y equipo}
 \newcommand{\pro}{Procedimiento}
@@ -49,7 +57,7 @@
 \vspace*{-0.5in}
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=11cm]{fig/logo.png}
+\includegraphics[width=11cm]{logo.png}
 \end{center}
 \end{figure}
 \vspace*{0.4in}
@@ -84,7 +92,7 @@ AREA ELECTRICA\\
 
 \tableofcontents
 
-\input{instructivo/introduccion_arduino}
+% meter acá el contendido del instructivo
 
 \section{Resultados}
 
@@ -99,7 +107,7 @@ Si desea citar algo lo puede hacer así \cite{margolis2020arduino}
 %----------------------------------------------------------------------------------------
 
 \appendix
-\input{instructivo/apendices}
+%inlcuir apendices acá
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
@@ -113,175 +121,3 @@ Si desea citar algo lo puede hacer así \cite{margolis2020arduino}
 
 
 \end{document}
-% \begin{document}
-
-
-
-
-% \tableofcontents
-% \newpage
-
-% \section{\obj}
-% \capacidad
-% \begin{itemize}
-%     \item Compilar y cargar  un programa en Arduino.
-%     \item Configurar los pines del microcontrolador.
-%     \item Estudiar la tabla ASCII generada con el Arduino.
-%     \item Estudiar la creación de funciones lógicas: AND, OR, XOR, NAND, NOR.
-%     \item Estudiar la cuantización de una señal.
-% \end{itemize}
-
-% \section{\mat}
-% \begin{itemize}
-% \item 1 Arduino UNO o equivalente: MEGA o ESP32.
-% \item 1 Multímetro.
-% \item 5 Resistencias de 270 o \SI{330}{\ohm}.
-% \item 2 Resistencias de \SI{1}{\kilo\ohm}
-% \item 2 interruptores pulsadores.
-% \item 1 Protoboard.
-% \item 5 Diodos emisor de luz (LEDs).
-% \item 2 Generadores de funciones.
-% \item 2 Osciloscopio.
-% \item 1 Computadora portátil.
-% \end{itemize}
-
-% \section{Marco de referencia}
-
-% Un micro-controlador es un circuito integrado pequeño que contiene un microprocesador, memoria y periféricos como entradas/salidas (IO), comunicación, almacenamiento y sensores. Estos componentes están integrados en un solo chip y pueden ser programados para controlar diferentes dispositivos y sistemas.
-
-% Entre las partes que pueden contener los micro-controladores se encuentran: 
-
-% \begin{itemize}
-%     \item Microprocesador: es la unidad aritmética lógica,  registros asociados y controladores  que realizan  las operaciones del sistema y es responsable de ejecutar las instrucciones del programa.
-%     \item Memoria: donde se almacena el programa y los datos.
-%     \item Entradas/Salidas (IO): permite la comunicación entre el micro-controlador y el mundo exterior.
-%     \item Comunicación: permite que el micro-controlador se comunique con otros dispositivos a través de diferentes protocolos como USB, Ethernet, etc.
-%     \item Almacenamiento: permite almacenar datos en el dispositivo, como una EEPROM o una memoria flash.
-%     \item Sensores: permiten medir diferentes variables ambientales como la temperatura, la humedad, la presión, etc.
-% \end{itemize}
-
-% Los micro-controladores tienen muchos usos, incluyendo: 
-% \begin{itemize}
-%     \item Control de motores,
-%     \item Automatización de procesos industriales,
-%     \item Dispositivos de medida y monitoreo,
-%     \item Control de sistemas de iluminación y calefacción,
-%     \item Control de sistemas de seguridad,
-%     \item Control de electrodomésticos y dispositivos de consumo,
-%     \item Control de sistemas de comunicación,
-%     \item Control de sistemas de vehículos,
-%     \item Control de robots y sistemas automatizados.
-% \end{itemize}
-% \subsection{Arduino}
-
-% El Arduino es una plataforma de desarrollo de hardware y software libre basada en un micro-controlador. La programación de Arduino se basa en el lenguaje de programación C++ y utiliza un entorno de desarrollo integrado (IDE) específico llamado Arduino IDE. El Arduino IDE es una aplicación de escritorio que se utiliza para escribir, depurar y cargar código en el micro-controlador.
-
-% El procedimiento básico de programación del Arduino es el siguiente:
-
-% \begin{enumerate}
-%     \item Conectar el Arduino a la computadora mediante un cable USB.
-%     \item Abrir el Arduino IDE y seleccionar el tipo de Arduino y la tarjeta que se va a utilizar en el menú Herramientas.
-%     \item Escribir el código en el editor de código del Arduino IDE, utilizando el lenguaje de programación C++.
-%     \item Verificar el código compilando el código utilizando el botón verde de compilación del Arduino IDE.
-%     \item Cargar el código en el Arduino utilizando el botón azul de carga del Arduino IDE.
-%     \item Observar el comportamiento del código en los pines de entrada y salida del Arduino, si es necesario realizar cambios en el código para obtener el resultado deseado.
-%     \item Repetir los pasos 3-6 hasta que el código funcione correctamente.
-% \end{enumerate}
-
-% El esquema básico de programación de Arduino utiliza dos funciones esenciales \cite{margolis2020arduino}: setup() y loop().
-
-% La función \href{https://www.arduino.cc/reference/en/language/structure/sketch/setup/}{setup()}: Es la primera función que se ejecuta cuando el Arduino se enciende o se reinicia. En esta función se configuran los pines de entrada y salida, se establecen las velocidades de comunicación, se inicializan las variables, entre otras tareas de configuración. 
-
-% La función \href{https://www.arduino.cc/reference/en/language/structure/sketch/loop/}{loop()}: Es la función que se ejecuta continuamente después de que se ha ejecutado la función setup(). En esta función se escriben las instrucciones que se deben ejecutar continuamente, como la lectura de sensores, el control de actuadores, la comunicación con otros dispositivos, entre otras tareas.
-
-% Las instrucciones y funciones del lenguaje C++ para Arduino pueden ser consultadas en el \href{https://www.arduino.cc/reference/en/}{siguiente vínculo}.
-
-% \section{\pro}
-
-% Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. Los estudiantes deben mostrar durante las clases programadas las tres actividades propuestas. Deben recabar fotografías y resultados de los equipos de medición para elaborar las evidencias. Las evidencias se subirán al TecDigital la semana siguiente finalizadas las actividades.
-
-% \section{Práctica en Clase}
-
-% \subsection{Actividad 1}
-% \label{l2:a1}
-% Los símbolos  para impresión \href{https://www.unicode.org/charts/PDF/U0000.pdf}{ASCII} (\textit{American Standard Code for Information Interchange}) es una codificación de distintos símbolos a un valor numérico que usualmente es mostrado en decimal, binario o hexagecimal.
-
-% El siguiente programa muestra la tabla ASCII no extendida que genera el Arduino. Dicho programa imprime en el puerto serial el numero decimal, su equivalente binario y hexagecimal y el simbolo respectivo. Por ejemplo el símbolo !, equivale a 33 en sistema decimal, a 21 en hexagecimal, a 41 en octal,y a 100001 en binario. El código de este proyecto lo puede copiar del enlace: \href{https://docs.arduino.cc/built-in-examples/communication/ASCIITable}{Tabla ASCII}.
- 
-% \subsubsection{Conteste las preguntas:}
-% ¿El símbolo ASCII ! esta bien representado en decimal?
-
-% ¿Cual es la diferencia del comando serial.write y serial.print()?
-
-% ¿Corrobore si las conversiones entre decimal, octal y hexagecimal son correctas?
-
-% \subsection{Actividad 2}
-% El  código del apéndice \ref{ApendiceA} apaga y enciende un LED según el estado de un botón. La figura \ref{fig:fig1} muestra el esquema básico de conexión.
-
-% Elimine el botón y alimente el Arduino con un generador de funciones que brinde una señal cuadrada de 0 a 5 voltios. Conecte los dos canales del osciloscopio en la  entra y salida. Recuerde que todas las tierras deben estar conectadas entre si. 
-
-% \subsubsection{Conteste las preguntas:}
-% ¿Cuanto es el retardo de la señal?
-% ¿Cual es la frecuencia de la señal de entrada en que la señal de salida se distorsiona? Es decir, la señal de salida no es  inversa a la señal de entrada. Recuerde capturar las pantallas del osciloscopio en ambos casos.
-
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=0.5\linewidth]{fig/Fig1.png}
-% 	\caption{Diagrama de conexón del botón y LED.}
-% 	\label{fig:fig1}
-% \end{figure}
-
-
-% \subsection{Actividad 3}
-
-% Esta actividad permite analizar el comportamiento de las conectivas lógicas  AND, OR, XOR, NAND, y NOT, y exportar los resultados al puerto serial, así como mostrar los resultados mediante los LEDs conectados a los pines $\left\lbrace4, 5, 6, 7, 8 \right\rbrace$ ; el código de ejemplo se muestra en el apéndice \ref{ApendiceB}. Las entradas declaradas mediante los pines $\left\lbrace2, 3 \right\rbrace$ reciben las señales de dos generadores de funciones. Los generadores brindan una señal triangular que oscila ente $[0-5]$ voltios, debe ajustar cuidadosamente con el osciloscopio cada señal. La señal del pin 2 tendrá una frecuencia del doble del pin 3. Adicionalmente las señales  triangulares alimentaran el convertidor Analógico-Digital (ADC) mediante los pines A0 y A1. Conecte su Arduino según el esquema de la Figura \ref{fig:fig2}.  Imprima los resultados en el puerto serial, ajuste la velocidad del puerto con valores de: \{ 9600, 14400, 19200, 28800, 38400, 57600\}bps según la frecuencia seleccionada del generador de funciones.
-
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=0.8\linewidth]{fig/Fig2.png}
-% 	\caption{Esquema de conexión del Arduino, Generador de funciones y Osciloscopio}
-% 	\label{fig:fig2}
-% \end{figure}
-
-
-% El código del Anexo B implementa las funciones lógicas AND, OR. Un repaso de como implementar funciones en C se muestra en \href{https://aprendiendoarduino.wordpress.com/2016/11/16/funciones-definidas-por-usuario-2/}{este enlace.} 
-
-% \subsubsection{Conteste las preguntas:}
-
-% Guarde los datos del puerto serial en un archivo .TXT e importelos en MS EXCEL para graficar los datos.
-% Se recomienda utilizar el monitor serial de MS CODE STUDIO dado que este permite salvar los datos.
-% ¿Se logra apreciar las señales triangulares y digitales?
-% ¿Las gráficas de las señales digitales de entrada y salida cumplen las tablas de verdad de las conectivas lógicas?
-% ¿Cual es el voltaje de entrada en bajo máximo $V_{IL} max$?,
-% ¿Cual es el voltaje de entrada en alto mínimo $V_{IH} min$?,
-% ¿Cual es el error que presenta las mediciones de los voltajes ?,
-% ¿Si desea un error de $\pm1$ mV, de cuantos bits debe ser el ADC?¿Explique?
-
-% \section{Resultados}
-
-% \section{Análisis de resultados}
-
-% \section{Conclusiones}
-
-% Si desea citar algo lo puede hacer así \cite{margolis2020arduino}
-
-% %----------------------------------------------------------------------------------------
-% %	APPENDIX
-% %----------------------------------------------------------------------------------------
-
-% \appendix
-% \input{instructivo/apendices}
-
-
-% %----------------------------------------------------------------------------------------
-% %	BIBLIOGRAPHY
-% %----------------------------------------------------------------------------------------
-
-% \bibliographystyle{ieeetr}
-
-% \bibliography{referencias}
-
-% %----------------------------------------------------------------------------------------
-
-
-% \end{document}

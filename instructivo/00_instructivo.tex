@@ -24,7 +24,10 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[12pt,letterpaper]{report}
-\input{../comunes/preamble}
+\makeatletter
+\def\input@path{{../comunes/}{../instructivo/}{../data/}{../algoritmos/}}
+\makeatother
+\input{preamble}
 \usepackage{geometry} 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
