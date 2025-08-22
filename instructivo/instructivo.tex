@@ -20,7 +20,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[12pt,letterpaper]{report}
-\input{comunes/preamble}
+\input{../comunes/preamble}
 \usepackage{geometry} 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -33,7 +33,7 @@
 \newcommand{\programa}{Ingeniería en Mantenimiento Industrial}
 \newcommand{\curso}{Laboratorio de Control Eléctrico}
 \lhead{Instructivo de \curso}
-\rhead{\begin{picture}(0,0) \put(-60,0){\includegraphics[width=20mm]{fig/logo.png}} \end{picture}}
+\rhead{\begin{picture}(0,0) \put(-60,0){\includegraphics[width=20mm]{logo.png}} \end{picture}}
 \newcommand{\obj}{Objetivos}
 \newcommand{\mat}{Materiales y equipo}
 \newcommand{\pro}{Procedimiento}
@@ -55,7 +55,7 @@
 \vspace*{1in}
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=11cm]{fig/logo.png}
+\includegraphics[width=11cm]{logo.png}
 \end{center}
 \end{figure}
 \vspace*{0.4in}
@@ -92,21 +92,21 @@ Dr.-Eng. Juan J. Rojas
 
 \tableofcontents
 
-\input{instructivo/introduccion_arduino}
-\input{instructivo/combinacionales}
-\input{instructivo/flip_flops}
-\input{instructivo/cableada}
-\input{instructivo/tension_reducida}
-\input{instructivo/variadores}
-\input{instructivo/logo}
-\input{instructivo/automatas}
+\input{01_introduccion_arduino}
+% \input{instructivo/combinacionales}
+% \input{instructivo/flip_flops}
+% \input{instructivo/cableada}
+% \input{instructivo/tension_reducida}
+% \input{instructivo/variadores}
+% \input{instructivo/logo}
+% \input{instructivo/automatas}
 
 %----------------------------------------------------------------------------------------
 %	APPENDIX
 %----------------------------------------------------------------------------------------
 
 \appendix
-\input{instructivo/apendices}
+\input{99_apendices}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY

@@ -1,0 +1,73 @@
+\chapter{Marcos de referencia}
+\section{Arduino}
+
+Un micro-controlador es un circuito integrado pequeño que contiene un microprocesador, memoria y periféricos como entradas/salidas (IO), comunicación, almacenamiento y sensores. Estos componentes están integrados en un solo chip y pueden ser programados para controlar diferentes dispositivos y sistemas.
+
+Entre las partes que pueden contener los micro-controladores se encuentran: 
+
+\begin{itemize}
+    \item Microprocesador: es la unidad aritmética lógica,  registros asociados y controladores  que realizan  las operaciones del sistema y es responsable de ejecutar las instrucciones del programa.
+    \item Memoria: donde se almacena el programa y los datos.
+    \item Entradas/Salidas (IO): permite la comunicación entre el micro-controlador y el mundo exterior.
+    \item Comunicación: permite que el micro-controlador se comunique con otros dispositivos a través de diferentes protocolos como USB, Ethernet, etc.
+    \item Almacenamiento: permite almacenar datos en el dispositivo, como una EEPROM o una memoria flash.
+    \item Sensores: permiten medir diferentes variables ambientales como la temperatura, la humedad, la presión, etc.
+\end{itemize}
+
+Los micro-controladores tienen muchos usos, incluyendo: 
+\begin{itemize}
+    \item Control de motores,
+    \item Automatización de procesos industriales,
+    \item Dispositivos de medida y monitoreo,
+    \item Control de sistemas de iluminación y calefacción,
+    \item Control de sistemas de seguridad,
+    \item Control de electrodomésticos y dispositivos de consumo,
+    \item Control de sistemas de comunicación,
+    \item Control de sistemas de vehículos,
+    \item Control de robots y sistemas automatizados.
+\end{itemize}
+\subsection{Arduino}
+
+El Arduino es una plataforma de desarrollo de hardware y software libre basada en un micro-controlador. La programación de Arduino se basa en el lenguaje de programación C++ y utiliza un entorno de desarrollo integrado (IDE) específico llamado Arduino IDE. El Arduino IDE es una aplicación de escritorio que se utiliza para escribir, depurar y cargar código en el micro-controlador.
+
+El procedimiento básico de programación del Arduino es el siguiente:
+
+\begin{enumerate}
+    \item Conectar el Arduino a la computadora mediante un cable USB.
+    \item Abrir el Arduino IDE y seleccionar el tipo de Arduino y la tarjeta que se va a utilizar en el menú Herramientas.
+    \item Escribir el código en el editor de código del Arduino IDE, utilizando el lenguaje de programación C++.
+    \item Verificar el código compilando el código utilizando el botón verde de compilación del Arduino IDE.
+    \item Cargar el código en el Arduino utilizando el botón azul de carga del Arduino IDE.
+    \item Observar el comportamiento del código en los pines de entrada y salida del Arduino, si es necesario realizar cambios en el código para obtener el resultado deseado.
+    \item Repetir los pasos 3-6 hasta que el código funcione correctamente.
+\end{enumerate}
+
+El esquema básico de programación de Arduino utiliza dos funciones esenciales \cite{margolis2020arduino}: setup() y loop().
+
+La función \href{https://www.arduino.cc/reference/en/language/structure/sketch/setup/}{setup()}: Es la primera función que se ejecuta cuando el Arduino se enciende o se reinicia. En esta función se configuran los pines de entrada y salida, se establecen las velocidades de comunicación, se inicializan las variables, entre otras tareas de configuración. 
+
+La función \href{https://www.arduino.cc/reference/en/language/structure/sketch/loop/}{loop()}: Es la función que se ejecuta continuamente después de que se ha ejecutado la función setup(). En esta función se escriben las instrucciones que se deben ejecutar continuamente, como la lectura de sensores, el control de actuadores, la comunicación con otros dispositivos, entre otras tareas.
+
+Las instrucciones y funciones del lenguaje C++ para Arduino pueden ser consultadas en el \href{https://www.arduino.cc/reference/en/}{siguiente vínculo}.
+
+
+\chapter{Repositorio de código}
+\label{ap:osc}
+\section{Código actividad 1}
+\label{ApendiceA1}
+{\scriptsize 
+    \lstinputlisting[language=Arduino, numbers=none, showstringspaces=false]{../algoritmos/L1A1/L1A1.ino}
+}
+
+\section{Código actividad 2}
+\label{ApendiceA2}
+{\scriptsize 
+    \lstinputlisting[language=Arduino, numbers=none, showstringspaces=false]{../algoritmos/L1A2/L1A2.ino}
+}	
+
+
+\section{Código actividad 3}
+\label{ApendiceA3}
+{\scriptsize 
+    \lstinputlisting[language=Arduino, numbers=none, showstringspaces=false]{../algoritmos/L1A3/L1A3.ino}
+}

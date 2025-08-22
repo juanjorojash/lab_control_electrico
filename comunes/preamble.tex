@@ -45,7 +45,13 @@
 \newcommand\diagram[2]{\schema{\schemabox{#1}}{\schemabox{#2}}}
 \usepackage{listings}
 \usepackage{csvsimple}
-\input{comunes/arduinoLanguage.tex}
+\input{../comunes/arduinoLanguage.tex}
 \usepackage{lmodern}
 \usepackage{subcaption}
+
+\graphicspath{{../fig/}}
+
+\makeatletter
+\def\input@path{{../instructivo/}{../data/}{../algoritmos/}}
+\makeatother
 
