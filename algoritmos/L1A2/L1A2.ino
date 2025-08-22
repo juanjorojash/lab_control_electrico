@@ -4,6 +4,7 @@
     
     Este programa prende el LED cuando se presiona el botón. 
     */
+    
     // Declaracione de entradas y salidas
     const int BUTTON = 2;  // Boton conectado al pin 2
     const int LED = 4;     // LED conectado al pin 4
