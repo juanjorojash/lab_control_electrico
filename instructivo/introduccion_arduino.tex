@@ -2,7 +2,7 @@
 \section{\obj}
 \capacidad
 \begin{itemize}
-    \item Compilar y cargar  un programa en Arduino.
+    \item Desarrollar un programa sencillo en la plataforma de Arduino.
     \item Configurar los pines del microcontrolador.
     \item Estudiar la tabla ASCII generada con el Arduino.
     \item Estudiar la creación de funciones lógicas: AND, OR, XOR, NAND, NOR.
@@ -94,7 +94,7 @@ El siguiente programa muestra la tabla ASCII no extendida que genera el Arduino.
 ¿Corrobore si las conversiones entre decimal, octal y hexagecimal son correctas?
 
 \subsection{Actividad 2}
-El  código del apéndice \ref{ApendiceA} apaga y enciende un LED según el estado de un botón. La figura \ref{fig:fig1} muestra el esquema básico de conexión.
+El  código del apéndice \ref{ApendiceA1} apaga y enciende un LED según el estado de un botón. La figura \ref{fig:fig1} muestra el esquema básico de conexión.
 
 Elimine el botón y alimente el Arduino con un generador de funciones que brinde una señal cuadrada de 0 a 5 voltios. Conecte los dos canales del osciloscopio en la  entra y salida. Recuerde que todas las tierras deben estar conectadas entre si. 
 
@@ -104,7 +104,6 @@ Elimine el botón y alimente el Arduino con un generador de funciones que brinde
 
 \begin{figure}[H]
     \tikzset{dig/.style={muxdemux, muxdemux def={Lh=5, Rh=5, NL=2, NB=0, NR=0, w=2}}}
-    \tikzset{BMP280/.style={muxdemux, muxdemux def={Lh=5, Rh=5, NL=0, NB=0, NR=6, w=2}}}
     \centering
     \begin{circuitikz} 
         \draw 
@@ -124,57 +123,33 @@ Elimine el botón y alimente el Arduino con un generador de funciones que brinde
         \coordinate (F) at (-4,1);
         \coordinate (G) at (-4,0.5);
         \coordinate (H) at (-4,-1);
-        \draw[blue, line width=0.5mm]
+        \node at (-4,0.7)[jump crossing, scale = 2](X){};
+        \draw[black]
         (p.blpin 1)
         -|
         (A)
-        ;
-        \draw[black]
-        (A)
         to [R, l=\SI{10}{\kilo\ohm}]
         (B)
-        ;
-        \draw[orange, line width=0.5mm]
-        (B)
         |-
-        (m.blpin 1)
-        ;
-        \draw[green, line width=0.5mm]
+        (X.west)
         (p.blpin 2)
         -|
-        (C)
-        ;
-        \draw[black]
         (C)
         to [push button]
         (D)
-        ;
-        \draw[orange, line width=0.5mm]
-        (D)
         |-
+        (X.west)
+        (X.east)
+        --
         (m.blpin 1)
-        ;
-        \draw[green, line width=0.5mm]
         (p.blpin 2)
         -|
         (E)
-        ;
-        \draw[black]
-        (E)
         to[led]
         (F)       
-        ;
-        \draw[yellow, line width=0.5mm]
-        (F)
         --
-        (G)
-        ;
-        \draw[black]
-        (G)        
+        (G)     
         to [R,l=\SI{500}{\ohm}]
-        (H)
-        ;
-        \draw[brown, line width=0.5mm]
         (H)
         --
         ++(0,-0.5)
@@ -184,7 +159,7 @@ Elimine el botón y alimente el Arduino con un generador de funciones que brinde
         (m.blpin 2)
         ;        
         \draw[dashed,blue]
-        (-2.5,6) -- (1,6)node[midway, below]{UNO R4 MINIMA} -- (1,-1.5) -- (-2.5,-1.5) -- cycle;
+        (-2.5,6) -- (1,6)node[midway, below]{ARDUINO UNO} -- (1,-1.5) -- (-2.5,-1.5) -- cycle;
     \end{circuitikz}
     \caption{Conexión de circuito para Actividad 2}
     \label{fig:fig1}
@@ -192,7 +167,77 @@ Elimine el botón y alimente el Arduino con un generador de funciones que brinde
 
 \subsection{Actividad 3}
 
-Esta actividad permite analizar el comportamiento de las conectivas lógicas  AND, OR, XOR, NAND, y NOT, y exportar los resultados al puerto serial, así como mostrar los resultados mediante los LEDs conectados a los pines $\left\lbrace4, 5, 6, 7, 8 \right\rbrace$ ; el código de ejemplo se muestra en el apéndice \ref{ApendiceB}. Las entradas declaradas mediante los pines $\left\lbrace2, 3 \right\rbrace$ reciben las señales de dos generadores de funciones. Los generadores brindan una señal triangular que oscila ente $[0-5]$ voltios, debe ajustar cuidadosamente con el osciloscopio cada señal. La señal del pin 2 tendrá una frecuencia del doble del pin 3. Adicionalmente las señales  triangulares alimentaran el convertidor Analógico-Digital (ADC) mediante los pines A0 y A1. Conecte su Arduino según el esquema de la Figura \ref{fig:fig2}.  Imprima los resultados en el puerto serial, ajuste la velocidad del puerto con valores de: \{ 9600, 14400, 19200, 28800, 38400, 57600\}bps según la frecuencia seleccionada del generador de funciones.
+Esta actividad permite analizar el comportamiento de las conectivas lógicas  AND, OR, XOR, NAND, y NOT, y exportar los resultados al puerto serial, así como mostrar los resultados mediante los LEDs conectados a los pines $\left\lbrace4, 5, 6, 7, 8 \right\rbrace$ ; el código de ejemplo se muestra en el apéndice \ref{ApendiceA2}. Las entradas declaradas mediante los pines $\left\lbrace2, 3 \right\rbrace$ reciben las señales de dos generadores de funciones. Los generadores brindan una señal triangular que oscila ente $[0-5]$ voltios, debe ajustar cuidadosamente con el osciloscopio cada señal. La señal del pin 2 tendrá una frecuencia del doble del pin 3. Adicionalmente las señales  triangulares alimentaran el convertidor Analógico-Digital (ADC) mediante los pines A0 y A1. Conecte su Arduino según el esquema de la Figura \ref{fig:fig2}.  Imprima los resultados en el puerto serial, ajuste la velocidad del puerto con valores de: \{ 9600, 14400, 19200, 28800, 38400, 57600\}bps según la frecuencia seleccionada del generador de funciones.
+
+
+\begin{figure}[H]
+    \tikzset{pow/.style={muxdemux, muxdemux def={Lh=5, Rh=5, NL=2, NB=0, NR=0, w=2}}}
+    \tikzset{dig/.style={muxdemux, muxdemux def={Lh=10, Rh=10, NL=7, NB=0, NR=0, w=2}}}
+    \centering
+    \begin{circuitikz} 
+        \draw 
+        (0,3.5) 
+        node[pow] (p){\rotatebox{90}{\small power}}
+        (0,-2) 
+        node[dig] (m){\rotatebox{90}{\small digital IO}};
+        \draw (m.blpin 1) node[above left]{\small DIO2};
+        \draw (m.blpin 2) node[above left]{\small DIO3};
+        \draw (m.blpin 3) node[above left]{\small DIO4};
+        \draw (m.blpin 4) node[above left]{\small DIO5};
+        \draw (m.blpin 5) node[above left]{\small DIO6};
+        \draw (m.blpin 6) node[above left]{\small DIO7};
+        \draw (m.blpin 7) node[above left]{\small DIO8};
+        \draw (p.blpin 1) node[above left]{\small 5V};
+        \draw (p.blpin 2) node[above left]{\small GND};
+        \coordinate (A) at (-8,2.5);
+        % \coordinate (B) at (-8,1);
+        % \coordinate (C) at (-6,2.5);
+        % \coordinate (D) at (-6,1);
+        % \coordinate (E) at (-4,2.5);
+        % \coordinate (F) at (-4,1);
+        % \coordinate (G) at (-4,0.5);
+        % \coordinate (H) at (-4,-1);
+        % \node at (-4,0.7)[jump crossing, scale = 2](X){};
+        \draw[black]
+        (p.blpin 1)
+        -|
+        (A)
+        % to [R, l=\SI{10}{\kilo\ohm}]
+        % (B)
+        % |-
+        % (X.west)
+        % (p.blpin 2)
+        % -|
+        % (C)
+        % to [push button]
+        % (D)
+        % |-
+        % (X.west)
+        % (X.east)
+        % --
+        % (m.blpin 1)
+        % (p.blpin 2)
+        % -|
+        % (E)
+        % to[led]
+        % (F)       
+        % --
+        % (G)     
+        % to [R,l=\SI{500}{\ohm}]
+        % (H)
+        % --
+        % ++(0,-0.5)
+        % --
+        % ++(1,0)
+        % |-
+        % (m.blpin 2)
+        ;        
+        \draw[dashed,blue]
+        (-2.5,6) -- (1,6)node[midway, below]{ARDUINO UNO} -- (1,-1.5) -- (-2.5,-1.5) -- cycle;
+    \end{circuitikz}
+    \caption{Conexión de circuito para Actividad 3}
+    \label{fig:fig3}
+\end{figure}
 
 \begin{figure}[H]
 	\centering

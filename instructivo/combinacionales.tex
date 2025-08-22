@@ -97,14 +97,14 @@ donde $\mathbb{S}_i$  es la $i$-ésima permutacion de las entradas de selección
 La ecuación de un Mux $4 \times 1$ es la siguiente,
 
 \begin{equation}
-	F(I_0,I_1,I_2,I_3,S_0,S_1)=I_0\bar{S_0}\bar{S_1}+I_1\bar{S_0}S_1+I_2S_0\bar{S_1}+I_3S_0S_1
+	F(I_0,I_1,I_2,I_3,S_1,S_0)=I_0\bar{S_1}\bar{S_0}+I_1\bar{S_1}S_0+I_2S_1\bar{S_0}+I_3S_1S_0
 \end{equation} 
 
 El código para implementar dicho multiplexor es similar al siguiente,
 {\footnotesize 
 \begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 bool F(bool I0,bool I1,bool I2,bool I3,bool S1,bool S0){
-	return (I0&&!S0&&!S1 || I1&&!S0&&S1 || I2&&S1&&!S0 || I3&&S0&&S1) ;
+	return (I0&&!S1&&!S0 || I1&&!S1&&S0 || I2&&S1&&!S0 || I3&&S1&&S0) ;
 }
 \end{lstlisting}
 }
@@ -148,11 +148,24 @@ Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. 
 
 \subsection{Actividad 1}
 
-Programe en Arruino una lógica combinacional que resuelva el siguiente problema.  En una planta industrial se desea automatizar un motor y una alarma de acuerdo a 4 sensores llamados $a$, $b$, $c$ y $d$  La señal del motor se representa por la función lógica $f1$, y se validará  cuando los sensores $a$ y $b$ estén encendidos, o cuando los sensores $b$ y $d$ estén encendidos, o cuando los sensores $a$, $c$ y $d$ están encendidos. Por otro lado, la señal de  alarma se representa con la función lógica $f2$, se activa siempre que estén todos los sensores apagados excepto $a$ o todos apagados excepto $c$ o estén encendidos $c$ y $d$ y el resto apagados. También la alarma se enciende cuando todos los sensores están encendidos o cuando están todos encendidos excepto $d$ o todos encendidos excepto $c$.
- 
- En el Arduino los pines $\left\lbrace 0,1,2,3\right\rbrace$ serán las entradas digitales $\left\lbrace a,b,c,d\right\rbrace$. Las salidas o respuestas de las funciones se dividen en dos grupos, los pines $\left\lbrace 5,6,7\right\rbrace $ se reservan para $f1$. Se deben implementar tres funciones:  la suma de productos $(SDP)$, el producto de suma $(PDS)$ y la función resuelta por conectivas $NAND/NAND$.   Por otro lado la función $f2$  mostrará su respuesta mediante los pines 
- $\left\lbrace 8,9,10\right\rbrace $, dicha función es implementada mediante $SDP$, $PDS$ y conectivas $NOR/NOR$.
- 
+Programe en Arruino una lógica combinacional que resuelva el siguiente problema:
+\begin{itemize}
+    \item En una planta industrial se desea automatizar un motor y una alarma de acuerdo a 4 sensores llamados $a$, $b$, $c$ y $d$ 
+    \item La señal del motor se representa por la función lógica $f1$, y se activará  cuando los sensores $a$ y $b$ estén encendidos, o cuando los sensores $b$ y $d$ estén encendidos, o cuando los sensores $a$, $c$ y $d$ están encendidos.
+    \begin{equation*}
+        f1 = ab + bd + acd
+    \end{equation*}
+    \item La señal de  alarma se representa con la función lógica $f2$, y se activará siempre que estén todos los sensores apagados excepto $a$ o todos apagados excepto $c$ o estén encendidos $c$ y $d$ y el resto apagados. También la alarma se enciende cuando todos los sensores están encendidos o cuando están todos encendidos excepto $d$ o todos encendidos excepto $c$.
+    \begin{equation*}
+        f2 = a\bar{b}\bar{c}\bar{d} + \bar{a}\bar{b}c\bar{d} + \bar{a}\bar{b}cd + abcd + abc\bar{d} + ab\bar{c}d
+    \end{equation*}
+    \begin{equation*}
+        f2 = a\bar{b}\bar{c}\bar{d} + \bar{a}\bar{b}c + abc + abd
+    \end{equation*}
+    \item Los pines $\left\lbrace 2,3,4,5\right\rbrace$ serán las entradas digitales $\left\lbrace a,b,c,d\right\rbrace$.
+    \item Los pines $\left\lbrace 6,7,8\right\rbrace $ se reservan para $f1$. Se deben implementar tres funciones: la suma de productos $(SDP)$, el producto de sumas $(PDS)$ y la función resuelta por conectivas $NAND/NAND$. 
+    \item Los pines $\left\lbrace 8,9,10\right\rbrace $ se reservan para $f2$. Se deben implementar tres funciones: la suma de productos $(SDP)$, el producto de sumas $(PDS)$ y la función resuelta por conectivas $NOR/NOR$.
+\end{itemize}
  
 \subsubsection{Conteste las preguntas:}
 
@@ -163,25 +176,21 @@ Programe en Arruino una lógica combinacional que resuelva el siguiente problema
 \subsection{Actividad 2}
 
 Programe las funciones de un Multiplexor 2x1, 4x1 y 8x1.
-Por otra parte, existe un circuito  combinacional que se comporta como la siguiente tabla de verdad. Cuadro \eqref{tab:tv}.
+Por otra parte, existe un circuito  combinacional que se comporta como la tabla de verdad mostrada en la Tabla \ref{tab:tv}.
 
 \begin{table}[H]
 \centering
 \caption{Comportamiento esperado de la estructura lógica.}
 \label{tab:tv}
-\begin{tabular}{|c|c|c|}
-
-	\hline 
-	a 	& b  & $F(a,b)$  \\ 
-	\hline 
- 	0	& 0 &  $c + d$\\ 
-
-	0	& 1 &  $\overline{c + d}$\\ 
-
-	1	& 0 &  $\overline{c \cdot d}$\\ 
-
-	1	& 1 &  $c \oplus d$\\ 
-	\hline 
+\begin{tabular}{ccc}
+    \toprule 
+    $a$ & $b$ & $F(a,b)$ \\ 
+    \midrule
+    0 & 0 & $c + d$ \\ 
+    0 & 1 & $\overline{c + d}$ \\ 
+    1 & 0 & $\overline{c \cdot d}$ \\ 
+    1 & 1 & $c \oplus d$ \\ 
+    \bottomrule
 \end{tabular} 
 
 \end{table}
@@ -191,13 +200,3 @@ Por otra parte, existe un circuito  combinacional que se comporta como la siguie
 ¿El comportamiento de un multiplicador $8 \times 1$ coincide con la tabla teórica?
 En la funcion Loop() , llame la función del MUX  $8 \times 1$ e ingrese parámetros $\left\lbrace a,b,c,d \right\rbrace $ de tal forma que se comporte igual que la tabla de verdad presentada en el Cuadro \ref{tab:tv}.¿Tiene el mismo comportamiento?
 ¿Es posible implementar la T.V. con dos MUX $4 \time 1$ y un MUX  $2 \time 1$?¿Como se implementa?
-
-\subsection{Actividad 3}
-
-Implemente en un Arduino un decodificador de 3 bits a Octal. En otro Arduino programe la función de un codificador Octal a binario de 3 bit. Conecte ambos Arduinos, las entradas del primer arduino se conectan a botoneras, las salidas del primer arduino se conectan con las entradas del segundo Arduino y las salidas del segundo Arduino se conectan a LEDs.  
-
-
-\subsubsection{Conteste las preguntas:} 
-¿La tabla de verdad del codificador es idéntica a la teórica o esperada?
-¿La tabla de verdad del decodificador es idéntica a la teórica o esperada?
-¿Como es la salida del segundo Arduino respecto a las entradas del primero?
