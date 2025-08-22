@@ -49,19 +49,15 @@ donde $S$ es la entrada que pone un uno lógico en la salida $Q$, por otro lado 
 	\centering
 	\caption{Tabla de verdad del cerrojo S-R.}
 	\label{tab:SR}
-	\begin{tabular}{|c|c|c|c|}
-		
-		\hline 
-		$S$ 	& $R$  & $Q+$  & $\bar{Q}+$  \\
-		\hline 
-		0	& 0 &	$Q$	&	$Q$		\\ 
-		
-		0	& 1&	0	&	1	\\ 
-		
-		1	& 0 &	1	&	0	\\ 
-			
-		1	& 1 &	X	&	X	\\ 	
-		\hline 
+	\begin{tabular}{cccc}
+		\toprule
+		$S$ & $R$ & $Q+$ & $\bar{Q}+$ \\
+		\midrule
+		0 & 0 &	$Q$	& $Q$ \\ 
+		0 & 1 &	0 & 1 \\ 
+		1 & 0 &	1 &	0 \\ 
+		1 & 1 &	X &	X \\ 	
+		\bottomrule
 	\end{tabular} 
 \end{table} 
 
@@ -75,21 +71,20 @@ Los bi-estables J-K poseen poseen tres entradas: J, K y el reloj Clk. La ecuaci�
 
 
 \begin{table}
-	\centering
-	\caption{Tabla de verdad del Latch J-K.}
-	\label{tab:JK}
-	\begin{tabular}{|c|c|c|c|c|}
-		
-		\hline 
-		$J$ 	& $K$  & $CLK$  &  Q+ &$\bar{Q}+$ \\
-		\hline 
-		X	& X &	X	&	$Q$	&  $\bar{Q}$	\\ 
-		0	& 0 &	$\uparrow$	&	$Q$	&  $\bar{Q}$	\\ 
-		0	& 1&	$\uparrow$	&	0  &   1	  \\ 
-		1	& 0 &   $\uparrow$	&	1  &   0	\\ 	
-		1	& 1 &	$\uparrow$	&	$\bar{Q}$   &  $Q$	 \\ 	
-		\hline 
-	\end{tabular} 
+    \centering
+    \caption{Tabla de verdad del Latch J-K.}
+    \label{tab:JK}
+    \begin{tabular}{ccccc}
+        \toprule
+        $J$ & $K$ & $CLK$ & $Q+$ & $\bar{Q}+$ \\
+        \midrule
+        X & X &	X &	$Q$	& $\bar{Q}$	\\ 
+        0 & 0 &	$\uparrow$ & $Q$ & $\bar{Q}$ \\ 
+        0 & 1 &	$\uparrow$ & 0 & 1 \\ 
+        1 & 0 & $\uparrow$ & 1 & 0 \\ 	
+        1 & 1 &	$\uparrow$ & $\bar{Q}$ &  $Q$ \\ 	
+        \bottomrule
+    \end{tabular} 
 \end{table} 
 
 Por otra parte los bi-estable tipo de D y T son casos particulares del bi-estable J-K y sus ecuaciones características estan definas por \eqref{lab3:Ec6} y \eqref{lab3:Ec7}. 
@@ -229,52 +224,52 @@ Para realizar esta actividad debe estudiar los siguiente:
 ¿Que pasa si ambos botones, entrada y salida, se presionan de forma simultanea?
 ¿Puede realizar un experimento completo donde se muestre como se llena y vacía el parqueo y exportar los resultados al puerto serial?
 
-\subsection{Actividad 3}
+% \subsection{Actividad 3}
 
-Realice un programa en Arduino que controle dos motores a pasos, con un botón conectado al Pin 1 los dos motores arrancan o paran. Si se arranca los motores, en pantalla se mostrará la palabra RUN, y el sentido de giro  de giro derecho ($>>$).
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.7\linewidth]{fig/Fig3.png}
-	\caption{Display 16X2 caracteres.}
-	\label{fig:fig3}
-\end{figure}
-Si se presiona el nuevamene Pin 1 (pare), los motores se detienen indicando la palabra STOP en el Display de cristal liquido (LCD).
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{fig/Fig4.png}
-	\caption{Información mostrada en Display cuando se presiona el boton de parada.}
-	\label{fig:fig4}
-\end{figure}
+% Realice un programa en Arduino que controle dos motores a pasos, con un botón conectado al Pin 1 los dos motores arrancan o paran. Si se arranca los motores, en pantalla se mostrará la palabra RUN, y el sentido de giro  de giro derecho ($>>$).
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.7\linewidth]{fig/Fig3.png}
+% 	\caption{Display 16X2 caracteres.}
+% 	\label{fig:fig3}
+% \end{figure}
+% Si se presiona el nuevamene Pin 1 (pare), los motores se detienen indicando la palabra STOP en el Display de cristal liquido (LCD).
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.7\linewidth]{fig/Fig4.png}
+% 	\caption{Información mostrada en Display cuando se presiona el boton de parada.}
+% 	\label{fig:fig4}
+% \end{figure}
 
-Si presiona el botón conectado al PIN (3) en la pantalla los dos motores cambiaran de sentido de giro, y en pantalla aparecerá ($<<$). Si se presiona nuevamente el botón conectado al Pin (2), los motores cambiaran de sentido nuevamente y en pantalla aparecerá ($>>$).
+% Si presiona el botón conectado al PIN (3) en la pantalla los dos motores cambiaran de sentido de giro, y en pantalla aparecerá ($<<$). Si se presiona nuevamente el botón conectado al Pin (2), los motores cambiaran de sentido nuevamente y en pantalla aparecerá ($>>$).
 
-Si se presionan botones UP o DOWN (Pines 4 o 5) la velocidad de pulsos por segundo se incrementará ($\uparrow$) o se excrementará ($\downarrow$) de uno en uno, desde 2 p/sec hasta 40p/sec. En pantalla se montará las siguientes flechas.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{fig/Fig5}
-	\caption{Flechas mostradas en Display cuando se modifican los pulsos. }
-	\label{fig:fig5}
-\end{figure}
-Los motores unipolares se controlan con las señales S1, S2, S3, S4 que se muestran en el Display. Los motores Bipolar necesitan dos puentes H y cada puente tendrá las señales de control Q1, Q2, Q3, Q4.  Las señales de control Sx y Qx tendrán valores de 1 o 0 únicamente.
+% Si se presionan botones UP o DOWN (Pines 4 o 5) la velocidad de pulsos por segundo se incrementará ($\uparrow$) o se excrementará ($\downarrow$) de uno en uno, desde 2 p/sec hasta 40p/sec. En pantalla se montará las siguientes flechas.
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.7\linewidth]{fig/Fig5}
+% 	\caption{Flechas mostradas en Display cuando se modifican los pulsos. }
+% 	\label{fig:fig5}
+% \end{figure}
+% Los motores unipolares se controlan con las señales S1, S2, S3, S4 que se muestran en el Display. Los motores Bipolar necesitan dos puentes H y cada puente tendrá las señales de control Q1, Q2, Q3, Q4.  Las señales de control Sx y Qx tendrán valores de 1 o 0 únicamente.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{fig/Fig6}
-	\caption{Señales de control para los motores.}
-	\label{fig:fig6}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.7\linewidth]{fig/Fig6}
+% 	\caption{Señales de control para los motores.}
+% 	\label{fig:fig6}
+% \end{figure}
 
-El circuito de potencia de un puente H se aprecia en la figura \ref{fig:puenteh}.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\linewidth]{fig/PuenteH}
-	\caption{Puente H para un motor Bipolar.}
-	\label{fig:puenteh}
-\end{figure}
+% El circuito de potencia de un puente H se aprecia en la figura \ref{fig:puenteh}.
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.4\linewidth]{fig/PuenteH}
+% 	\caption{Puente H para un motor Bipolar.}
+% 	\label{fig:puenteh}
+% \end{figure}
 
-Conecte un motor Unipolar o bipolar con el circuito de potencia al Arduino. Utilize el circuito de potencia adecuado según su motor. Ponga en el Eje cinta para ver el sentido de jiro.
+% Conecte un motor Unipolar o bipolar con el circuito de potencia al Arduino. Utilize el circuito de potencia adecuado según su motor. Ponga en el Eje cinta para ver el sentido de jiro.
 
-\subsubsection{Conteste las preguntas:} 
+% \subsubsection{Conteste las preguntas:} 
 
-¿Puede mostrar las tablas de excitación generadas por el arduino para controlar los motores?
-¿Son estas tablas similares a la teóricas?
+% ¿Puede mostrar las tablas de excitación generadas por el arduino para controlar los motores?
+% ¿Son estas tablas similares a la teóricas?
