@@ -8,7 +8,7 @@ from drawnow import drawnow
 import csv
 
 # Inicializa el serial
-ArduinoData = serial.Serial('COM17', baudrate=115200, bytesize=8,
+ArduinoData = serial.Serial('COM6', baudrate=115200, bytesize=8,
                             parity='N', stopbits=1, timeout=1.5)
 
 # verfica que la instancancia serial esté cerrada

@@ -2,7 +2,6 @@
 Instituto Tecnológico de Costa Rica
 Laboratorio de Control Eléctrico.
 Lab #1: Introducción a Arduino
-Este programa prende el LED cuando se presiona el botón. 
 Implementación de funciones lógicas AND, OR, XOR, NAND, NOR de 2 entradas
 */
 
@@ -21,32 +20,27 @@ void setup(){
   Serial.begin(115200);
   Serial.println("-----");  
 // Initializa los pines:
-for (int i = 0; i < (sizeof(PinSalidas)/2); i++) {
-  if (i<(sizeof(PinEntrada)/2)) {
-    pinMode(PinEntrada[i], INPUT);
-  }
+for (int i = 0; i < 2; i++) {
+  pinMode(PinEntrada[i], INPUT);
+}
+for (int i = 0; i < 5; i++) {
   pinMode(PinSalidas[i], OUTPUT);
-  }
+}
 delay(2);
 }
 
 void loop()
 {	
-  //LECTURA DE LAS ENTRADAS Y SALIDAS 	
-  for(int i=0; i<(sizeof(PinSalidas)/2);i++){
-    if(i<(sizeof(PinEntrada)/2)){
-      // Lectura de entradas digitales
-      Mapa_entradas[i]=digitalRead(PinEntrada[i]);
-      // Lectura de los valores analógicos
-      ValorAnalojLeido[i] = analogRead(PinAnalogico[i]);
-      // Funcion de mapeo :
-    ValorVoltage[i]= (map(ValorAnalojLeido[i], 0, 1023, 0, 500)/100.0);
-    Serial.println(ValorVoltage[i]);
+    //Lectura de entradas
+    for(int i=0; i < 2; i++){
+        Mapa_entradas[i] = digitalRead(PinEntrada[i]);
+        ValorAnalojLeido[i] = analogRead(PinAnalogico[i]);
+        ValorVoltage[i]= (map(ValorAnalojLeido[i], 0, 1023, 0, 500)/100.0);
     }
-  // Escritura de salida digital
-  digitalWrite(PinSalidas[i],ResultadoLogico[i]);
-  }
-
+    //Escritura de salidas
+    for(int i=0; i < 5; i++){
+        digitalWrite(PinSalidas[i],ResultadoLogico[i]);
+    }    
 //EJECUCION DEL PROGRAMA
   ResultadoLogico[0]=AND(Mapa_entradas[1],Mapa_entradas[0]);
   ResultadoLogico[1]=OR(Mapa_entradas[1],Mapa_entradas[0]);
