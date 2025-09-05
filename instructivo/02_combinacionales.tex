@@ -163,7 +163,17 @@ Programe en Arruino una lógica combinacional que resuelva el siguiente problema
     \end{equation*}
     \item Los pines $\left\lbrace 2,3,4,5\right\rbrace$ serán las entradas digitales $\left\lbrace a,b,c,d\right\rbrace$.
     \item Los pines $\left\lbrace 6,7,8\right\rbrace $ se reservan para $f1$. Se deben implementar tres funciones: la suma de productos $(SDP)$, el producto de sumas $(PDS)$ y la función resuelta por conectivas $NAND/NAND$. 
-    \item Los pines $\left\lbrace 8,9,10\right\rbrace $ se reservan para $f2$. Se deben implementar tres funciones: la suma de productos $(SDP)$, el producto de sumas $(PDS)$ y la función resuelta por conectivas $NOR/NOR$.
+    \begin{align*}
+        &f1_{SDP} = ab + bd + acd\\
+        &f1_{PDS} = (a+b)\cdot (a+d)\cdot (b+d)\cdot (b+c)\\
+        &f1_{NAND/NAND} = \overline{\overline{ab} \cdot \overline{bd} \cdot \overline{acd}}
+    \end{align*}
+    \item Los pines $\left\lbrace 9,10,11\right\rbrace $ se reservan para $f2$. Se deben implementar tres funciones: la suma de productos $(SDP)$, el producto de sumas $(PDS)$ y la función resuelta por conectivas $NOR/NOR$.
+    \begin{align*}
+        &f2_{SDP} = a\bar{b}\bar{c}\bar{d} + \bar{a}\bar{b}c + abc + abd\\
+        &f2_{PDS} = (a+c)\cdot (a+\bar{b})\cdot(b+c+\bar{d})\cdot(\bar{b}+c+d)\cdot (\bar{a}+b+\bar{c})\\
+        &f2_{NOR/NOR} = \overline{\overline{(a+c)}\cdot \overline{(a+\bar{b})}\cdot \overline{(b+c+\bar{d})} \cdot \overline{(\bar{b}+c+d)} \cdot \overline{(\bar{a}+b+\bar{c})}}
+    \end{align*}
 \end{itemize}
  
 \subsubsection{Conteste las preguntas:}
