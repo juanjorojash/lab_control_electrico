@@ -94,7 +94,7 @@ Elimine el botón y alimente el Arduino con un generador de funciones que brinde
         \draw[dashed,blue]
         (-2.5,6) -- (1,6)node[midway, below]{ARDUINO UNO} -- (1,-1.5) -- (-2.5,-1.5) -- cycle;
     \end{circuitikz}
-    \caption{Conexión de circuito para Actividad 2}
+    \caption{Conexión de circuito para Actividad 1}
     \label{fig:fig1}
 \end{figure}
 
@@ -106,75 +106,78 @@ Los generadores brindan una señal triangular que oscila ente $[0-5]$ voltios, d
 La señal del pin 2 tendrá una frecuencia del doble del pin 3. Adicionalmente las señales  triangulares alimentaran el convertidor Analógico-Digital (ADC) mediante los pines A0 y A1. 
 Conecte su Arduino según el esquema de la Figura \ref{fig:fig2}.  
 
-
-\begin{figure}[H]
-    \tikzset{pow/.style={muxdemux, muxdemux def={Lh=5, Rh=5, NL=2, NB=0, NR=0, w=2}}}
-    \tikzset{dig/.style={muxdemux, muxdemux def={Lh=10, Rh=10, NL=7, NB=0, NR=0, w=2}}}
-    \centering
-    \begin{circuitikz} 
-        \draw 
-        (0,3.5) 
-        node[pow] (p){\rotatebox{90}{\small power}}
-        (0,-2) 
-        node[dig] (m){\rotatebox{90}{\small digital IO}};
-        \draw (m.blpin 1) node[above left]{\small DIO2};
-        \draw (m.blpin 2) node[above left]{\small DIO3};
-        \draw (m.blpin 3) node[above left]{\small DIO4};
-        \draw (m.blpin 4) node[above left]{\small DIO5};
-        \draw (m.blpin 5) node[above left]{\small DIO6};
-        \draw (m.blpin 6) node[above left]{\small DIO7};
-        \draw (m.blpin 7) node[above left]{\small DIO8};
-        \draw (p.blpin 1) node[above left]{\small 5V};
-        \draw (p.blpin 2) node[above left]{\small GND};
-        \coordinate (A) at (-8,2.5);
-        % \coordinate (B) at (-8,1);
-        % \coordinate (C) at (-6,2.5);
-        % \coordinate (D) at (-6,1);
-        % \coordinate (E) at (-4,2.5);
-        % \coordinate (F) at (-4,1);
-        % \coordinate (G) at (-4,0.5);
-        % \coordinate (H) at (-4,-1);
-        % \node at (-4,0.7)[jump crossing, scale = 2](X){};
-        \draw[black]
-        (p.blpin 1)
-        -|
-        (A)
-        % to [R, l=\SI{10}{\kilo\ohm}]
-        % (B)
-        % |-
-        % (X.west)
-        % (p.blpin 2)
-        % -|
-        % (C)
-        % to [push button]
-        % (D)
-        % |-
-        % (X.west)
-        % (X.east)
-        % --
-        % (m.blpin 1)
-        % (p.blpin 2)
-        % -|
-        % (E)
-        % to[led]
-        % (F)       
-        % --
-        % (G)     
-        % to [R,l=\SI{500}{\ohm}]
-        % (H)
-        % --
-        % ++(0,-0.5)
-        % --
-        % ++(1,0)
-        % |-
-        % (m.blpin 2)
-        ;        
-        \draw[dashed,blue]
-        (-2.5,6) -- (1,6)node[midway, below]{ARDUINO UNO} -- (1,-1.5) -- (-2.5,-1.5) -- cycle;
-    \end{circuitikz}
-    \caption{Conexión de circuito para Actividad 3}
-    \label{fig:fig3}
-\end{figure}
+%Esta es la figura real
+% \begin{figure}[H]
+%     \tikzset{pow/.style={muxdemux, muxdemux def={Lh=5, Rh=5, NL=2, NB=0, NR=0, w=2}}}
+%     \tikzset{dig/.style={muxdemux, muxdemux def={Lh=10, Rh=10, NL=7, NB=0, NR=0, w=2}}}
+%     \tikzset{sig/.style={muxdemux, muxdemux def={Lh=4, Rh=4, NL=2, NB=0, NR=0, w=2}}}
+%     \centering
+%     \begin{circuitikz} 
+%         \draw 
+%         (0,3.5) 
+%         node[pow] (p){\rotatebox{90}{\small power}}
+%         (0,-2) 
+%         node[dig] (m){\rotatebox{90}{\small digital IO}};
+%         (0,6)
+%         node[dig] (s){\rotatebox{90}{\small signal gen}};
+%         \draw (m.blpin 1) node[above left]{\small DIO2};
+%         \draw (m.blpin 2) node[above left]{\small DIO3};
+%         \draw (m.blpin 3) node[above left]{\small DIO4};
+%         \draw (m.blpin 4) node[above left]{\small DIO5};
+%         \draw (m.blpin 5) node[above left]{\small DIO6};
+%         \draw (m.blpin 6) node[above left]{\small DIO7};
+%         \draw (m.blpin 7) node[above left]{\small DIO8};
+%         \draw (p.blpin 1) node[above left]{\small 5V};
+%         \draw (p.blpin 2) node[above left]{\small GND};
+%         \coordinate (A) at (-8,2.5);
+%         % \coordinate (B) at (-8,1);
+%         % \coordinate (C) at (-6,2.5);
+%         % \coordinate (D) at (-6,1);
+%         % \coordinate (E) at (-4,2.5);
+%         % \coordinate (F) at (-4,1);
+%         % \coordinate (G) at (-4,0.5);
+%         % \coordinate (H) at (-4,-1);
+%         % \node at (-4,0.7)[jump crossing, scale = 2](X){};
+%         \draw[black]
+%         (p.blpin 1)
+%         -|
+%         (A)
+%         % to [R, l=\SI{10}{\kilo\ohm}]
+%         % (B)
+%         % |-
+%         % (X.west)
+%         % (p.blpin 2)
+%         % -|
+%         % (C)
+%         % to [push button]
+%         % (D)
+%         % |-
+%         % (X.west)
+%         % (X.east)
+%         % --
+%         % (m.blpin 1)
+%         % (p.blpin 2)
+%         % -|
+%         % (E)
+%         % to[led]
+%         % (F)       
+%         % --
+%         % (G)     
+%         % to [R,l=\SI{500}{\ohm}]
+%         % (H)
+%         % --
+%         % ++(0,-0.5)
+%         % --
+%         % ++(1,0)
+%         % |-
+%         % (m.blpin 2)
+%         ;        
+%         \draw[dashed,blue]
+%         (-2.5,6) -- (1,6)node[midway, below]{ARDUINO UNO} -- (1,-5.5) -- (-2.5,-5.5) -- cycle;
+%     \end{circuitikz}
+%     \caption{Conexión de circuito para Actividad 2}
+%     \label{fig:fig3}
+% \end{figure}
 
 \begin{figure}[H]
 	\centering

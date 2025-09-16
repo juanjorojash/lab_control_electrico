@@ -1,0 +1,109 @@
+\chapter{Laboratorio:  Programación de variadores de frecuencia y arrancadores suaves.}
+
+\section{\obj}
+\capacidad
+\begin{itemize}
+	{\small
+    \item  Alambrar el circuito de control y potencia del variador.
+    \item  Programar un variador de frecuencia segun los requerimientos. 
+	\item Alambrar el arrancador suave para un motor trifásico.
+	\item Alambrar un arranque pare reversible usando un arrancador suave de un motor trifásico.
+	\item Programar el variador de frecuencia.
+	\item Medir el tiempo de las rampas de aceleración y desaceleración, y vincular con los parámetros programados.
+ }
+\end{itemize} 
+
+ 
+\section{Equipos y materiales}
+Para este laboratorio de necesitaran:
+\begin{itemize}
+	{\small \item 1 motor trifásico 1/2 hp de 3 puntas.
+	\item 1 variador de frecuencia: \href{https://search.abb.com/library/Download.aspx?DocumentID=3AUA0000066143&LanguageCode=en&DocumentPartId=1&Action=Launch}{ABB ACS355} o \href{https://vfds.com/content/manuals/delta/delta-vfd-el-manual.pdf}{VFD-EL}
+	\item 1 arrancador suave SIEMENS RW3013.
+	\item 2 contactores.
+	\item 1 botón pulsar cerrado.
+	\item 2 botones pulsadores abiertos.
+	\item 3 interruptores N.O.
+	\item 1 amperimetro de gancho con medición INRUSH.
+	\item 1 analizador de señales trifásico FLUKE 143B.
+}
+\end{itemize}
+
+\section{Metodología}
+
+Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. Los estudiantes deben mostrar durante las clases programadas las tres actividades propuestas. Deben recabar fotografías y resultados de los equipos de medición para elaborar las evidencias. Las evidencias se subirán al TecDigital la semana siguiente finalizadas las actividades.
+
+\section{Práctica en Clase}
+
+\subsection{Actividad 1}
+
+Suponga que el arrancador suave es para un motor de una cinta transportadora que puede operar en ambos sentidos. Según el manual del \href{https://support.industry.siemens.com/dl/files/095/38752095/att_1310813/v1/Manual_softstarter_3RW30_3RW40_es-MX.pdf}{SIRIUS 3RW30} \cite{SIEMENS}, sección 13.1.2, seleccione el voltaje de inicio y la rampa de tiempo recomendada.
+Implemente un circuito de control y potencia para que el motor arranque en dos sentidos, para esto puede usar como referencia la sección 16 de ejemplos. 
+ 
+\subsubsection{Conteste las preguntas}
+
+¿Puede mostrar el circuito de control del sistema?
+Usando un analizador Fluke 143B  mida la corriente de arranque del motor.
+¿Como son las señales de corriente y voltaje a la entrada del motor con/sin arrancador suave?
+¿Cuanto tiempo tardó en aparecer el voltaje de línea en las terminales?¿Coincide con la rampa de tiempo pre-establecida?
+
+\subsection{Actividad 2}
+ 
+
+Utilizando el manual del variador, encuentre el código que re-inicial el VDF a sus valores de fábrica.
+Luego ingrese los parámetros descritos en la sección 3.3 asociados al voltaje, corriente nominal y frecuencia base del motor.
+Posteriormente seleccione un modo de entrada que permita operar el motor en ambos sentidos mediante cableado externo.
+Programe rampas de aceleración entre las frecuencias mínimas y máximas de 20 segundos y de desaceleración de 30.
+Programe siete frecuencias en el VDF, asumiendo torque constante en vacío,de tal forma que en el eje del motor se midan las velocidades de la Tabla \ref{Tab:velocidades}.
+
+\begin{table}[H]
+	\centering  
+	\caption{Velocidades solicitadas}
+	\label{Tab:velocidades}
+	\begin{tabular}{|c|c|}
+		\hline 
+		Velocidad	&	Rev/min	\\	\hline 
+		
+		0	&	900	  	   	 \\ 
+		1	&	1050	  	   	 \\ 
+		2	&	1200	  	   	 \\ 
+		3	&	1350	  	   	 \\ 
+		4	&	1500	  	   	 \\ 
+		5	&	1650	    	 \\ 
+		6	&	1800        	 \\ 
+		7	&	1950     	   	 \\ 
+		\hline 
+	\end{tabular} 
+\end{table}
+ 
+
+ 
+\subsubsection{Conteste las preguntas:}
+
+Realice la gráfica de voltaje en función de la frecuencia ($V=\mathfrak{F}(f)$), ¿Es como se esperaba?
+Realice una tabla con las mediciones de las velocidades medidas, ¿Cuál fue el porcentaje de error relativo de cada medición?
+Si se programa el variador con frecuencias calculadas con torque variable, los errores mejoran o empeoran? ¿Por qué?
+¿Son las gráficas PWM a la salida del variador son como se esperan? ¿Puede mostrar un gráfico? Si se desconecta una fase de entrada en VDF, ¿que sucedió con el VDF? Mida las rampas de aceleración y desaceleración, cumple lo programado? Cuanto tarda de pasar de la velocidad 3 a la 5 y viceversa, tienen estos tiempos sentido? Que pasaría si se programan rampas de 1 segundo de aceleración y des-aceleración?
+ 
+
+%\section{Informe de evidencias para el TECDIGITAL}
+%
+% Para cada actividad copie los resultados que se imprimieron en el puerto serial. Adicionalmente, para las actividades 2 y 3 muestre las fotografías de los circuitos.
+% 
+% El informe que se sube al TEC DIGITAL debe ser un archivo PDF, con las siguiente partes:
+% 
+% \begin{enumerate}
+% 	\item Identificación del laboratorio, Autores, fecha.
+% 	\item Resumen
+% 	\item Objetivos
+% 	\item Descripción de la actividad x.
+% 	\item Evidencia fotográfica de los circuitos. 
+% 	\item Evidencia de los resultados obtenidos (gráficas, tablas, imágenes, etc ).
+% 	\item Análisis de las preguntas planteadas en la actividad.
+% 	\item Referencias.
+% \end{enumerate}
+% 
+% Si el laboratorio posee x actividades los pasos 4,5,6 y 7 se repiten x veces. 
+
+
+

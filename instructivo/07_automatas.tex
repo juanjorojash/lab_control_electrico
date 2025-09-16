@@ -25,37 +25,6 @@ Para este laboratorio de necesitaran:
 }
 \end{itemize}
 
-\section{Marco de referencia}
-
-La programación de los autómatas programables ha sufrido cambios en la semántica y sintaxis de programación con la implementacion de la norma IEC 611131-3 \cite{IEC61131-1} por parte de los fabricantes. La normalización de la semántica  mediante la estructuración de los programas y la normalización de sintaxis mediante la implementacion de cinco lenguajes de programación estandarizados  permiten la portabilidad del código entre fabricantes. 
-
-La programación  estructura de  código informático para autómatas programables, permite organizar y descomponer  las soluciones en multiples subsistemas con distintos niveles de jerarquía. Esta  nueva forma de programar estructuradamente permite ordenar y dar mantenimiento al código de forma más sencilla, así como re-utilizar  código existente para otras soluciones. Al respecto la norma IEC-61131-3 \cite{Tiegelkamp10} indica que los autómatas modernos estructuran sus programas en \textit{Program Organisation Units} (POU) los cuales los divide en tres tipos: \textit{Program}, \textit{Function Block} y \textit{Funtion}.  
-
-SIEMENS indica en su manual de Software \cite{TIA-S7}, que el programa de usuario se conforma por: bloques  de organización (OB), bloques de función (FB), funciones (FC), y bloques de datos (DB), la Figura \ref{fig:plc} muestra la relación entre los distintos bloques. Por favor leer entre las páginas 5625-5631 para una descripción detallada de los bloques.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.85\linewidth]{fig/PLC.png}
-	\caption{Programación jerarquizadas en TIA Portal.}
-	\label{fig:plc}
-\end{figure}
-
-
-Cada bloque OB, FB o FC puede ser programado con varios lenguajes estandarizados, es decir un FB puede ser programado de cinco formas distintas y también es permitido mesclar distintos lenguajes en la solución jerarquizada. La Figura \ref{fig:languajes} muestra los cinco lenguajes estandarizados por la norma: Diagrama en escalera (LD), Diagrama en Bloque de Funciones (FBD), Lista de Instrucciones (IL), Texto estructurado (ST) y Gráfico de Función Secuencial (SFC). Notese en la Figura \ref{fig:languajes}, que los primeros cuatro lenguajes muestran la respectiva implementación de una AND lógica entre las señales booleanas  S1  y S2. Al respecto SIEMENS nombra dichos lenguajes como: KOP o esquemas de contactos, FUP o diagrama de funciones, AWL o lista de instrucciones, SCL o lenguaje de control estructurado y GRAPH o lenguaje de programación gráfico. La descripción de detallada de cada lenguaje, sus funciones, ejemplos, etc., se encuentran en el manual del sistema \cite{TIA-S7}, para la funcionalidad del KOP incie en página 14161, para el FUP ver página 14223, para  AWL inicia en la página 14283, el SCL se encuentra en la página 14333 y para el GRAPH ver la página 14411.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{fig/Languajes.png}
-	\caption{Lenguajes estandarizados por la norma IEC 61131-3.}
-	\label{fig:languajes}
-\end{figure}
-
-
-Los diagramas electricos de conexión del CPU S7-1500, de sus módulos de entrada y salida se muestran en el manual del hardware \cite{PLC-1500}. La creación de un proyecto con el Software TIA portal se encuentra en la página  1280 de dicho manual, sin embargo, un video informativo con dicho procedimiento esta disponible en \cite{Maria}. 
-
-
-
- 
 \section{Metodología}
 
 Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. Los estudiantes deben mostrar durante las clases programadas las tres actividades propuestas. Deben recabar fotografías y resultados de los equipos de medición para elaborar las evidencias. Las evidencias se subirán al TecDigital la semana siguiente finalizadas las actividades.

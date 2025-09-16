@@ -30,62 +30,6 @@ Para este laboratorio de necesitaran:
 }
 \end{itemize}
 
-\section{Marco de referencia}
-El arranque de motores trifásicos a tensión reducida es una técnica utilizada para reducir la corriente de arranque y el par de arranque, lo que ayuda a evitar problemas de sobrecarga en el sistema eléctrico.
-
-Existen diferentes técnicas, pero las más comunes son: de arranque a tensión reducida, como el arranque estrella-triángulo, el arranque con autotransformador, arranque con resistencias estatóricas o rotóricas, arrancadores suaves, etc. Cada técnica tiene sus propias ventajas y desventajas y debe seleccionarse en función de las características del motor, la aplicación y las limitaciones del sistema eléctrico.
-
-\subsection{Temporizadores Electrónicos}
-
-Los temporizadores son dispositivos de control de tiempo que permiten activar o desactivar algún actuador un tiempo después de activarse o desactivarse una señal de control. Los temperorizadores pueden ser  construidos de forma mecánica, neumática, electromecánica, electrónica, programada pero todos tienen funcionamientos estandarizados como: retardo a la conexión (On-delay), retardo a la desconexión (Off-delay), retardo a la conexión y desconexión (On/Off-Delay), relés de pulsos simétricos, entre otros. 
-
-La Figura \ref{fig:imagen} muestra un temporizador electrónico y la Figura \ref{fig:Diagrama} su diagrama de conexión. Note que el dispositivo se alimenta mediante las borneras A1-A2,  las señales de control se declaran como X1 y Y1, y los contactos auxiliares normalmente cerrados y abiertos son las borneras 15-16-18 y 21-22-24. Este temporizador posee cuatro potenciometros o diales: el  primer dial selecciona el rango de tiempo $R$, con el segundo dial se selecciona un valor $V$ entre 1 y 10, el tiempo de activacion  $T$ se calcula como  $T=R\cdot V/10$. El tercer dial selecciona una de las ocho funciones preestablecidas: a modo de ejemplo la Figura \ref{fig:Funciones} muestra las funciones A, C, Ac que representan temporizador operando como: On-delay, Off-delay y On-Off delay. Finalmente el cuarto dial, permite establecer un tiempo de retardo entre los contactos auxiliares R1 y R2, más información se detalla en \cite{Scheneider4}.
-
-
-\begin{figure}
-	\centering
-	\begin{subfigure}[b]{0.3\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{fig/RE22R2MYMR}
-		\caption{Temporizador RE22R2MYMR \cite{Scheneider3} }
-		\label{fig:imagen}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.5\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{fig/TimerDiagram}
-		\caption{Diagrama de conexión del RE22R2MYMR \cite{Scheneider4} }
-		\label{fig:Diagrama}
-	\end{subfigure}
-	\caption{Temporizador de 8 funciones RE22R2MYMR.}
-\end{figure}
-
-
-
-\begin{figure}
-	\centering
-	\begin{subfigure}[b]{0.32\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{fig/A-OnDelay}
-		\caption{A: On delay }
-		\label{fig:on-delay}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.32\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{fig/C-OffDelay}
-		\caption{C: Off delay}
-		\label{fig:Off-delay}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.32\textwidth}
-	\centering
-	\includegraphics[width=\textwidth]{fig/Ac-On-OffDelay}
-	\caption{Ac: On-Off delay }
-	\label{fig:OnOff-delay}
-	\end{subfigure}
-	\caption{Diagramas de tiempo de funciones a escoger en el selector del temporizador \cite{Scheneider4}.}
-	\label{fig:Funciones}
-\end{figure}
-
 \subsection{Arranque a tensión reducida}
 
 Los arranques a tensión reducida buscan reducir el voltaje que alimenta los devanados estatóricos para que en el momento del arranque la corriente de línea se reduzca.
