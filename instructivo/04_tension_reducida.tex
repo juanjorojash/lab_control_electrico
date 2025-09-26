@@ -133,6 +133,37 @@ Realice un arranque-pare secuencial para dos motores trifásicos de tres puntas.
 
 \begin{figure}[H]
 \centering
+    \begin{tikzpicture}[circuit plc ladder,scale=1.3]
+    \draw(0,0)  
+    to [ncpb,l=$P$] ++ (1,0) coordinate(A1)
+    to [nopb,l=$A$] ++ (1,0) coordinate(A2)
+    to [contact NC={info={$Sc$}}] ++ (1,0)
+    to [esource, l=$G$] ++ (1,0) coordinate(laddertopright)
+    (A1) -- ++ (0,-0.5) 
+    to [contact NO={info={$G$}}] ++ (1,0) -- (A2)
+    ;
+    \ladderrungend{1}
+    \draw(0,0)
+    to [contact NO={info={$G$}}] ++ (1,0) coordinate(T1) --++ (2,0)
+    to [esource, l=$T_{on}$] ++ (1,0)
+    (T1) -- ++ (0,-1)
+    to [contact NC={info={$T_{on}$}}] ++ (1,0)
+    to [contact NC={info={$D$}}] ++ (1,0)
+    to [esource, l=$E$] ++ (1,0)
+    (T1) ++ (0,-1) --++ (0,-1)
+    to [contact NO={info={$T_{on}$}}] ++ (1,0)
+    to [contact NC={info={$E$}}] ++ (1,0)
+    to [esource, l=$D$] ++ (1,0)
+    ;
+    \ladderrungend{3}
+    \ladderpowerrails
+    \end{tikzpicture}
+    \caption{Circuito de control: arranque por auto-transformador}
+    \label{fig:control-auto-transformador}
+\end{figure}
+
+\begin{figure}[H]
+\centering
     \begin{circuitikz}[cute inductors]
     \node[esourceshape,name=motor] at (7,-4){};
     \draw
@@ -165,39 +196,7 @@ Realice un arranque-pare secuencial para dos motores trifásicos de tres puntas.
     \label{fig:potencia-auto-transformador}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-    \begin{tikzpicture}[circuit plc ladder,scale=1.3]
-    \draw(0,0)  
-    to [ncpb,l=$P$] ++ (1,0) coordinate(A1)
-    to [nopb,l=$A$] ++ (1,0) coordinate(A2)
-    to [contact NC={info={$Sc$}}] ++ (1,0)
-    to [esource, l=$G$] ++ (1,0) coordinate(laddertopright)
-    (A1) -- ++ (0,-0.5) 
-    to [contact NO={info={$G$}}] ++ (1,0) -- (A2)
-    ;
-    \ladderrungend{1}
-    \draw(0,0)
-    to [contact NO={info={$G$}}] ++ (1,0) coordinate(T1) --++ (2,0)
-    to [esource, l=$T_{on}$] ++ (1,0)
-    (T1) -- ++ (0,-1)
-    to [contact NC={info={$T_{on}$}}] ++ (1,0)
-    to [contact NC={info={$D$}}] ++ (1,0)
-    to [esource, l=$E$] ++ (1,0)
-    (T1) ++ (0,-1) --++ (0,-1)
-    to [contact NO={info={$T_{on}$}}] ++ (1,0)
-    to [contact NC={info={$E$}}] ++ (1,0)
-    to [esource, l=$D$] ++ (1,0)
-    ;
-    \ladderrungend{3}
-    \ladderpowerrails
-    \end{tikzpicture}
-    \caption{Circuito de control: arranque por auto-transformador}
-    \label{fig:control-auto-transformador}
-\end{figure}
 
- 
- 
 \subsubsection{Conteste las preguntas:}
 
 ¿Cual es la corriente de arranque del motor según su dato de placa y letra de código? ¿Cuanto es la corriente de arranque medida con el FLUKE 143B? ¿Cuanto se redujo la corriente en el arranque?¿Se cumple la ecuación $I_{linea} = a^{2}\cdot I_{arr}$ ?
