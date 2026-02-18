@@ -39,7 +39,34 @@ Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. 
 
 Suponga que el arrancador suave es para un motor de una cinta transportadora que puede operar en ambos sentidos. Según el manual del \href{https://support.industry.siemens.com/dl/files/095/38752095/att_1310813/v1/Manual_softstarter_3RW30_3RW40_es-MX.pdf}{SIRIUS 3RW30} \cite{SIEMENS}, sección 13.1.2, seleccione el voltaje de inicio y la rampa de tiempo recomendada.
 Implemente un circuito de control y potencia para que el motor arranque en dos sentidos, para esto puede usar como referencia la sección 16 de ejemplos. 
- 
+
+ \begin{figure}[H]
+    \centering
+        \begin{tikzpicture}[circuit plc ladder,scale=1.5]
+        \draw(0,0)  
+        to [ncpb,l=$P$] ++ (1,0) coordinate(AF1)
+        to [nopb,l=$A_F$] ++ (1,0) coordinate(AF2)
+        to [contact NC={info={$R$}}] ++ (1,0)
+        to [esource, l=$F$] ++ (1,0)
+        to [contact NC={info={$Sc$}}] ++ (1,0) coordinate(laddertopright)
+        (AF1) -- ++ (0,-0.5) 
+        to [contact NO={info={$F$}}] ++ (1,0) -- (AF2)
+        (M1) -- ++ (0,-2) coordinate(AR1)
+        to [nopb,l=$A_R$] ++ (1,0) coordinate(AR2)
+        to [contact NC={info={$F$}}] ++ (1,0)
+        to [esource, l=$R$] ++ (1,0) -- ++ (0,2)
+        (AR1) -- ++ (0,-0.5) 
+        to [contact NO={info={$R$}}] ++ (1,0) -- (AR2)
+        ;
+		\draw(0,-3) to [contact NO={info={$F$}}] ++ (1,0) -- + (0,-1) 
+		to [generic] ++ (1,0) -- (5,-3)
+		;
+        \ladderrungend{5}
+        \ladderpowerrails
+        \end{tikzpicture}
+ \end{figure}
+
+
 \subsubsection{Conteste las preguntas}
 
 ¿Puede mostrar el circuito de control del sistema?
