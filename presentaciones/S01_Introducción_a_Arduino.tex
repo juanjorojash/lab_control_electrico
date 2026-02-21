@@ -1,15 +1,18 @@
 \documentclass[aspectratio=169]{beamer}
 \usetheme{Bruno}
-\input{comunes/preamble}
+\makeatletter
+\def\input@path{{../comunes/}{../instructivo/}{../data/}{../algoritmos/}}
+\makeatother
+\input{preamble}
 \title{Lab Control Eléctrico: \\ \emph{Introducción a Arduino}}
 \author{
     Juan J. Rojas
 }
 \institute{Instituto Tecnológico de Costa Rica}
 \date{\today}
-\background{fig/background.jpg}
+\background{background.jpg}
 \begin{document}
-\input{comunes/postamble}
+\input{postamble}
 \maketitle
 
 \newcommand{\blackandwhite}{white} %change this at the end
@@ -21,7 +24,7 @@ Es un computador diseñado para realizar alguna función específica dentro de u
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=0.5cm] at (current page.south) 
     {
-        \includegraphics[width=0.55\textwidth]{fig/embebidos.png}
+        \includegraphics[width=0.55\textwidth]{embebidos.png}
     };
 \end{tikzpicture}
 \end{frame}
@@ -32,7 +35,7 @@ Son circuitos integrados compactos diseñados para gobernar alguna operación es
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=0.5cm] at (current page.south) 
     {
-        \includegraphics[width=0.5\textwidth]{fig/ATMEGA2560.png}
+        \includegraphics[width=0.5\textwidth]{ATMEGA2560.png}
     };
 \end{tikzpicture}
 \end{frame}
@@ -43,7 +46,7 @@ Son plataformas de hardware diseñadas para ayudar a crear y validar aplicacione
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=0.5cm] at (current page.south) 
     {
-        \includegraphics[width=0.5\textwidth]{fig/ESP32.jpeg}
+        \includegraphics[width=0.5\textwidth]{ESP32.jpeg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -56,7 +59,7 @@ El nivel de un lenguaje de programación se define según su relación con el le
 \begin{tikzpicture}[remember picture, overlay]
     \node[above] at (current page.south) 
     {
-        \includegraphics[width=0.7\textwidth]{fig/niveles.jpg}
+        \includegraphics[width=0.7\textwidth]{niveles.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -66,7 +69,7 @@ El nivel de un lenguaje de programación se define según su relación con el le
 \begin{tikzpicture}[remember picture, overlay]
     \node[above] at (current page.south) 
     {
-        \includegraphics[width=0.75\textwidth]{fig/compiladovrsinterpretado.jpg}
+        \includegraphics[width=0.75\textwidth]{compiladovrsinterpretado.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -152,7 +155,7 @@ Características: escalar o vectorial, discreta o continua, determinista o aleat
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=0.6cm] at (current page.south) 
     {
-        \includegraphics[width=0.8\textwidth]{fig/analogicavrsdigital.jpg}
+        \includegraphics[width=0.8\textwidth]{analogicavrsdigital.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -164,7 +167,7 @@ Características: escalar o vectorial, discreta o continua, determinista o aleat
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=0.6cm] at (current page.south) 
     {
-        \includegraphics[width=0.8\textwidth]{fig/analogicavrsdigital.jpg}
+        \includegraphics[width=0.8\textwidth]{analogicavrsdigital.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -178,7 +181,7 @@ Características: escalar o vectorial, discreta o continua, determinista o aleat
 \begin{tikzpicture}[remember picture, overlay]
     \node[left=-0.5cm] at (current page.east) 
     {
-        \includegraphics[width=0.7\textwidth]{fig/sistema_adquisicion.jpg}
+        \includegraphics[width=0.7\textwidth]{sistema_adquisicion.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -201,7 +204,7 @@ Proceso de conversión de una señal para que esta pueda ser transmitida por med
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=1cm] at (current page.south) 
     {
-        \includegraphics[width=0.8\textwidth]{fig/convAD.jpg}
+        \includegraphics[width=0.8\textwidth]{convAD.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -215,7 +218,7 @@ Proceso de conversión de una señal para que esta pueda ser transmitida por med
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=0.6cm] at (current page.south) 
     {
-        \includegraphics[width=0.8\textwidth]{fig/muestreo.jpg}
+        \includegraphics[width=0.8\textwidth]{muestreo.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -230,7 +233,7 @@ Proceso de conversión de una señal para que esta pueda ser transmitida por med
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=0.6cm] at (current page.south) 
     {
-        \includegraphics[width=0.8\textwidth]{fig/muestreo.jpg}
+        \includegraphics[width=0.8\textwidth]{muestreo.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -242,7 +245,7 @@ Proceso de conversión de una señal para que esta pueda ser transmitida por med
 \begin{tikzpicture}[remember picture, overlay]
     \node[above=0.6cm] at (current page.south) 
     {
-        \includegraphics[width=0.8\textwidth]{fig/muestreo.jpg}
+        \includegraphics[width=0.8\textwidth]{muestreo.jpg}
     };
 \end{tikzpicture}
 \end{frame}
@@ -259,7 +262,7 @@ Proceso de conversión de una señal para que esta pueda ser transmitida por med
 %         \end{column}
 %         \begin{column}{0.6\textwidth}
 %             \begin{center}
-%                \includegraphics[width=\textwidth]{fig/tostadora.jpg}\\
+%                \includegraphics[width=\textwidth]{tostadora.jpg}\\
 %                \tiny{Tomado de \href{https://deseng.ryerson.ca/dokuwiki/_detail/design:toasterarchitecture.jpg?id=design\%3Asystem_diagram}{aquí}}
 %             \end{center}
 %         \end{column}
@@ -309,7 +312,7 @@ Proceso de conversión de una señal para que esta pueda ser transmitida por med
 %         \end{column}
 %         \begin{column}{0.4\textwidth}
 %             \begin{center}
-%                \includegraphics[width=0.8\textwidth]{fig/bourdon.jpg}\\
+%                \includegraphics[width=0.8\textwidth]{bourdon.jpg}\\
 %                \tiny{Tomado de \href{https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/MAXIMATOR-High-Pressure-Manometer-01a.jpg/1200px-MAXIMATOR-High-Pressure-Manometer-01a.jpg}{aquí}}
 %             \end{center}
 %         \end{column}
