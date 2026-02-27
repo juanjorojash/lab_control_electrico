@@ -14,7 +14,7 @@ from datetime import date, timedelta
 root = Path(__file__).resolve().parent.parent
 
 plan_dir = root / "plan"
-images_dir = root / "figures" / "comunes"
+images_dir = root / "fig"
 
 course = "Laboratorio de Control Eléctrico"
 id = "MI"
