@@ -1,0 +1,202 @@
+\chapter{Taller:  Arduino}
+
+\section{\obj}
+\capacidad
+\begin{itemize}
+    \item Entender la estructura de un sketch de Arduino
+    \item Subir un programa a un Arduino UNO R4 Minima
+    \item Usar entradas y salidas digitales
+    \item Usar la comunicación serial para hacer debugging
+\end{itemize} 
+
+\section{\mat}
+\begin{itemize}
+    \item Arduino UNO R4 Minima.
+    \item Cable USB-C
+    \item Protoboard
+    \item LED
+    \item Resistencia de 220 ohmios
+    \item Pulsador (push button)
+    \item Cables de conexión (jumpers)
+\end{itemize}
+
+\section{Metodología}
+
+Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. Los estudiantes deben mostrar durante las clases programadas las tres actividades propuestas. Deben recabar fotografías y resultados de los equipos de medición para elaborar las evidencias. Las evidencias se subirán al TecDigital la semana siguiente finalizadas las actividades.
+
+\section{Práctica en Clase}
+
+\subsection{Actividad 1}
+
+	Se requiere programar un arranque estrella-delta con multiples instancias. Para realizar esta actividad, utilize el lenguaje de contactos (KOP) para programar un  estrella - delta  dentro de un Bloque de función (FB). El FB tendrá como parámetros de entrada: la señal de arranque, pare, sobre carga y tiempo del temporizador. Como señales de salida tendrá la de la bobina general, la bobina que realiza el estrella y la bobina en delta.
+	
+	Luego en el bloque de organizacion uno (OB1), se llama el bloque  FB multiple veces. Por ejemplo, llame el FB tres veces y ponga tiempos de arranque distintos \{3, 6, 9\} segundos al parámetro tiempo  de  cada instancia.
+	
+ \subsubsection{Conteste las preguntas}
+  
+  Si se presiona el arranque al mismo tiempo, ¿como fue diagrama de tiempos de las 9 señales?
+  ¿Puede mostrar el diagrama KOP del FB y OB1 implementado?
+  
+
+\subsection{Actividad 2}
+
+Se necesita automatizar un parque de pozos profundos, el parque posee tres pozos y y tres tanques de captación. Se desea un sistema general que inicialice y pares los tres subsistemas, es decir, cuando se presione el arranque inicien el sistema de los tres pozos y cuando se presione el pare se detengan. Cuando se active una sobrecarga de algún motor ese subsistema en específico deja de funcionar, pero los otros dos subsistemas de pozos y tanque siguen funcionando normalmente. Los subsistemas se llamarán S1, S2 y S3 respectivamente.
+
+Cada subsistema de pozo profundo se compone de dos bombas que funcionan en alternancia, un pozo de captación y un tanque de almacenamiento. Las señales del tanque de almacenamiento indican el nivel alto \textbf{T1-Na}, y nivel bajo \textbf{T1-Nb} de agua, el pozo profundo posee también dos sensores de nivel, nivel alto \textbf{P1-Na} y nivel bajo \textbf{P1-Nb}, además existen las dos señales de salida para las dos bombas: \textbf{S1-B1} y \textbf{S1-B2}. 
+
+EL funcionamiento del subsistema es de la siguiente forma: las bombas toman el agua del pozo y la deposita en el tanque de captación. El nivel de agua \textbf{T1-Nb} activa la bomba \textbf{S1-B1} siempre y cuando la señal de \textbf{P1-Na} este activa. La bomba \textbf{S1-B1}  se apaga hasta alcanzar el nivel \textbf{T1-Na}  o que se quede sin agua indicado por el sensor del pozo \textbf{P1-Nb}. Dicho de otra forma, si antes de alcanzar el sensor \textbf{T1-Na} se activase el nivel \textbf{PI-Nb}, se apaga la bomba. La próxima vez que se active el sensor \textbf{T1-Nb}  y este activa el sensor \textbf{P1-Na} se activa la segunda bomba \textbf{S1-B2} y se apaga hasta alcanzar \textbf{T1-Na} o \textbf{P1-Nb}.   Este ciclo se repite hasta que se presione el apagado general del sistema o se active una de las dos sobrecargas del subsistema.
+
+Para los subsistemas 2 y 3 simplemente cambie los subindices en los sensores del tanque, pozo, bombas y sobrecargas son: \textbf{T\#-Nx}, \textbf{P\#-Nx}, \textbf{S\#-B\#}, \textbf{S\#-Sc\#}. Por ejemplo, la codificación de los sensores de nivel alto del tanque y el pozo se indica de la forma: \textbf{T3-Na} y \textbf{P3-Na}.
+
+Cada subsistema posee un contador de número de ciclos. El valor del contador es un parámetro de entrada. Cuando se llega al valor se activa una señal de alarmar para el mantenimiento. La alarma se restablece un boton pulsador.
+
+\begin{itemize}
+	\item Realice la programación con el Gráfico de Función Secuencial de SIEMENS llamado GRAPH.
+	\item Cree un Bloque de función FB1 genérico  usando el lenguaje GRAPH.
+	\item Cree un Bloque de  función FB2 general en diagrama de contactos (KOP), donde se llame 3 veces al bloque anterior y  renombre todos los parametros de entrada.
+	\item En el Bloque de organización OB1, inserte el bloque FB2.
+	\item Verifique el funcionamiento  la solución del problema mediante simulación.
+	\item Cargue el programa en el PLC S7-1500.
+	\item Active el monitoreo de las entradas y salidas del PLC y su visualización en la pantalla. 
+	
+\end{itemize}
+
+\subsubsection{Conteste las preguntas}
+
+¿Como es la implementación de contadores y temporizadores en GRAPH?
+¿Como se declaran los parámetros de entrada  y salida de un bloque de función (FB)?
+¿Como se comportó el sistema implementado? ¿Puede mostrar el diagrama del FB1 y FB2?
+
+\subsection{Actividad 3}
+
+Repita la actividad 2, pero implemente el ejercicio en texto estructurado (ST), con la variante que cada bomba del pozo requiere arrancar en estrella-delta.
+Para esta actividad podrá usar el FB programado en la actividad 1, y llamar este bloque múltiples veces. 
+
+Here is the full translated text in Spanish, without special formatting, tables, or code blocks, so you can paste it directly into LaTeX.
+
+
+
+3. Paso 1 – Instalación y configuración del IDE
+
+Instalar Arduino IDE 2.x desde el sitio oficial de Arduino.
+
+Configuración de la placa:
+
+En el Arduino IDE ir a Tools → Board → Arduino UNO R4 Boards → Arduino UNO R4 Minima.
+Seleccionar el puerto correcto en Tools → Port.
+
+Explicar brevemente que el UNO R4 Minima utiliza un microcontrolador Renesas RA4M1 basado en ARM Cortex-M4 y que trabaja con lógica de 5V, lo cual es importante desde el punto de vista eléctrico.
+
+4. Paso 2 – Comprender la estructura de un sketch
+
+Abrir el ejemplo Blink desde File → Examples → 01.Basics → Blink.
+
+El programa contiene dos funciones principales:
+
+La función setup() se ejecuta una sola vez cuando la placa se enciende o se reinicia.
+La función loop() se ejecuta continuamente mientras la placa esté encendida.
+
+Explicar los siguientes conceptos:
+
+pinMode() configura un pin como entrada o salida.
+digitalWrite() establece un pin en nivel alto (HIGH) o bajo (LOW).
+delay() detiene la ejecución durante un tiempo determinado en milisegundos.
+
+5. Paso 3 – Primera práctica: modificar Blink
+
+Pedir a los estudiantes que cambien el tiempo de parpadeo.
+
+Preguntas sugeridas:
+
+¿Qué ocurre si el retardo es de 200 milisegundos?
+¿Qué ocurre si es de 50 milisegundos?
+
+Introducir el concepto de tiempo en milisegundos y su relación con la percepción humana.
+
+6. Paso 4 – Salida digital con un LED externo
+
+Conexión:
+
+La pata larga del LED al pin digital 8.
+La pata corta del LED a una resistencia de 220 ohmios y luego a GND.
+
+Explicar:
+
+El uso de una constante para definir el número de pin.
+La importancia de la resistencia limitadora de corriente.
+El concepto básico de protección del dispositivo.
+
+7. Paso 5 – Entrada digital con pulsador
+
+Conexión:
+
+Un lado del pulsador al pin 7.
+El otro lado a GND.
+Configurar el pin como INPUT_PULLUP para usar la resistencia interna.
+
+Explicar:
+
+Qué es una resistencia pull-up interna.
+Por qué el botón se lee como LOW cuando está presionado.
+La estructura básica de una instrucción condicional if.
+
+8. Paso 6 – Uso del Monitor Serial para depuración
+
+Inicializar la comunicación serial en la función setup() con Serial.begin(9600).
+
+Explicar que la velocidad configurada debe coincidir con la del Monitor Serial.
+
+Utilizar Serial.print() y Serial.println() para observar valores de variables.
+
+Enseñar la diferencia entre print (sin salto de línea) y println (con salto de línea).
+
+Destacar que la comunicación serial es una herramienta fundamental para depuración y análisis.
+
+9. Paso 7 – Mini proyecto de integración
+
+Proponer el siguiente ejercicio:
+
+El LED parpadea lentamente de manera normal.
+Cuando se presiona el botón, el LED parpadea rápidamente.
+
+Este ejercicio integra:
+
+Uso de variables.
+Estructuras condicionales.
+Control básico de tiempo.
+Entradas y salidas digitales.
+
+10. Conceptos importantes específicos del UNO R4 Minima
+
+El UNO R4 Minima utiliza un microcontrolador de 32 bits basado en ARM, a diferencia del UNO R3 que es AVR de 8 bits.
+Dispone de mayor memoria y mayores capacidades.
+Mantiene compatibilidad con el entorno Arduino para programación básica.
+Opera con lógica de 5V.
+
+Sin embargo, es importante enfatizar que el modelo de programación para principiantes se mantiene esencialmente igual.
+
+Estrategia didáctica recomendada
+
+Secuencia sugerida:
+
+Primero Blink sin hardware externo.
+Luego LED externo.
+Después entrada con botón.
+Posteriormente uso del monitor serial.
+Finalmente el mini proyecto integrador.
+
+Recomendaciones pedagógicas:
+
+Mostrar siempre el diagrama de conexión antes de programar.
+Pedir a los estudiantes que predigan el comportamiento antes de cargar el programa.
+Fomentar la modificación experimental del código.
+Enseñar depuración incremental.
+
+Preguntas de evaluación sugeridas
+
+¿Qué ocurre si se elimina la instrucción pinMode()?
+¿Por qué el LED necesita una resistencia en serie?
+¿Por qué el botón se lee como LOW cuando está presionado?
+¿Qué ocurre si se elimina delay()?
+
+Si desea, puedo adaptarlo a formato de guía de laboratorio formal, versión comprimida de una hora, módulo de varias sesiones, o alinearlo con un curso de sistemas embebidos o sistemas ciberfísicos.
