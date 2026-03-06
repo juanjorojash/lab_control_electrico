@@ -1,4 +1,5 @@
 \chapter{Marcos de referencia}
+\label{ApendiceA}
 \section{Arduino}
 
 Un micro-controlador es un circuito integrado pequeño que contiene un microprocesador, memoria y periféricos como entradas/salidas (IO), comunicación, almacenamiento y sensores. Estos componentes están integrados en un solo chip y pueden ser programados para controlar diferentes dispositivos y sistemas.
@@ -48,16 +49,16 @@ La función \href{https://www.arduino.cc/reference/en/language/structure/sketch/
 
 La función \href{https://www.arduino.cc/reference/en/language/structure/sketch/loop/}{loop()}: Es la función que se ejecuta continuamente después de que se ha ejecutado la función setup(). En esta función se escriben las instrucciones que se deben ejecutar continuamente, como la lectura de sensores, el control de actuadores, la comunicación con otros dispositivos, entre otras tareas.
 
-Las instrucciones y funciones del lenguaje C++ para Arduino pueden ser consultadas en el \href{https://www.arduino.cc/reference/en/}{siguiente vínculo}.
+Las instrucciones y funciones del lenguaje C++ para Arduino pueden ser consultadas en el siguiente \href{https://www.arduino.cc/reference/en/}{enlace}.
 
 
 \section{Combinacionales}
 
 Un circuito combinacional digital es un circuito que produce una o varias salidas en función de sus entradas actuales. Es decir, no mantiene ningún estado interno y su salida depende exclusivamente de sus entradas en el momento actual.
 Existen muchas formas de implementar circuitos combinacionales, a partir de contactos eléctricos, válvulas neumáticas, transistores, software, etc. Sin embargo cualquier circuito lógico combinacional se puede expresar mediante cuatro formas equivalentes que describen su funcionamiento: ecuación lógica, tabla de verdad, diagrama de tiempo, y circuito eléctrico. 
-Puede encontrar información adicional en el siguiente enlace \href{https://es.wikipedia.org/wiki/Sistema_combinacional}{https://es.wikipedia.org/wiki/Sistema\_combinacional}.   
+Puede encontrar información adicional en el siguiente \href{https://es.wikipedia.org/wiki/Sistema_combinacional}{enlace}.   
 
-\subsection{Implementan de expresiones Booleanas }
+\subsection{Implementación de expresiones Booleanas}
 
 Un circuito combinacional  puede ser representado de distintas formas, pero la más común es mediante una ecuación lógica, por ejemplo: 
 \begin{equation}
@@ -124,14 +125,14 @@ donde $\mathbb{S}_i$  es la $i$-ésima permutacion de las entradas de selección
 La ecuación de un Mux $4 \times 1$ es la siguiente,
 
 \begin{equation}
-	F(I_0,I_1,I_2,I_3,S_1,S_0)=I_0\bar{S_1}\bar{S_0}+I_1\bar{S_1}S_0+I_2S_1\bar{S_0}+I_3S_1S_0
+	F(I_0,I_1,I_2,I_3,S_1,S_0)=I_0\bar{S_1}\bar{S_0}+I_1S_1\bar{S_0}+I_2\bar{S_1}S_0+I_3S_1S_0
 \end{equation} 
 
 El código para implementar dicho multiplexor es similar al siguiente,
 {\footnotesize 
 \begin{lstlisting}[language=Arduino,numbers=none, showstringspaces=false]
 bool F(bool I0,bool I1,bool I2,bool I3,bool S1,bool S0){
-	return (I0&&!S1&&!S0 || I1&&!S1&&S0 || I2&&S1&&!S0 || I3&&S1&&S0) ;
+	return (I0&&!S1&&!S0 || I1&&S1&&!S0 || I2&&!S1&&S0 || I3&&S1&&S0) ;
 }
 \end{lstlisting}
 }

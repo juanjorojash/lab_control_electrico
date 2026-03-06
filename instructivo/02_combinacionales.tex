@@ -31,20 +31,75 @@ Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. 
 
 \subsection{Actividad 1}
 
-Programe en Arruino una lógica combinacional que resuelva el siguiente problema:
+\subsubsection{Realice lo siguiente:}
 \begin{itemize}
     \item En una planta industrial se desea automatizar un motor y una alarma de acuerdo a 4 sensores llamados $a$, $b$, $c$ y $d$ 
     \item La señal del motor se representa por la función lógica $f1$, y se activará  cuando los sensores $a$ y $b$ estén encendidos, o cuando los sensores $b$ y $d$ estén encendidos, o cuando los sensores $a$, $c$ y $d$ están encendidos.
     \begin{equation*}
         f1 = ab + bd + acd
     \end{equation*}
-    \item La señal de  alarma se representa con la función lógica $f2$, y se activará siempre que estén todos los sensores apagados excepto $a$ o todos apagados excepto $c$ o estén encendidos $c$ y $d$ y el resto apagados. También la alarma se enciende cuando todos los sensores están encendidos o cuando están todos encendidos excepto $d$ o todos encendidos excepto $c$.
+    \begin{table}[H]
+    \centering
+    \caption{Tabla de verdad de $f1$.}
+    \label{tab:tv_f1}
+    \begin{tabular}{ccccc}
+        \toprule
+        $a$ & $b$ & $c$ & $d$ & $f1(a,b,c,d)$ \\
+        \midrule
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 \\
+        0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 1 & 0 \\
+        0 & 1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 1 & 1 \\
+        0 & 1 & 1 & 0 & 0 \\
+        0 & 1 & 1 & 1 & 1 \\
+        1 & 0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 1 & 0 \\
+        1 & 0 & 1 & 0 & 0 \\
+        1 & 0 & 1 & 1 & 1 \\
+        1 & 1 & 0 & 0 & 1 \\
+        1 & 1 & 0 & 1 & 1 \\
+        1 & 1 & 1 & 0 & 1 \\
+        1 & 1 & 1 & 1 & 1 \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    \item La señal de  alarma se representa con la función lógica $f2$, y se activará siempre que estén todos los sensores apagados excepto $a$ o todos apagados excepto $c$ o estén encendidos $c$ y $d$ y el resto apagados. 
+    También la alarma se enciende cuando todos los sensores están encendidos o cuando están todos encendidos excepto $d$ o todos encendidos excepto $c$.
     \begin{equation*}
         f2 = a\bar{b}\bar{c}\bar{d} + \bar{a}\bar{b}c\bar{d} + \bar{a}\bar{b}cd + abcd + abc\bar{d} + ab\bar{c}d
     \end{equation*}
     \begin{equation*}
         f2 = a\bar{b}\bar{c}\bar{d} + \bar{a}\bar{b}c + abc + abd
     \end{equation*}
+    \begin{table}[H]
+    \centering
+    \caption{Tabla de verdad de $f2$.}
+    \label{tab:tv_f2}
+    \begin{tabular}{ccccc}
+        \toprule
+        $a$ & $b$ & $c$ & $d$ & $f2(a,b,c,d)$ \\
+        \midrule
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 \\
+        0 & 0 & 1 & 0 & 1 \\
+        0 & 0 & 1 & 1 & 1 \\
+        0 & 1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 1 & 0 \\
+        0 & 1 & 1 & 0 & 0 \\
+        0 & 1 & 1 & 1 & 0 \\
+        1 & 0 & 0 & 0 & 1 \\
+        1 & 0 & 0 & 1 & 0 \\
+        1 & 0 & 1 & 0 & 0 \\
+        1 & 0 & 1 & 1 & 0 \\
+        1 & 1 & 0 & 0 & 0 \\
+        1 & 1 & 0 & 1 & 1 \\
+        1 & 1 & 1 & 0 & 1 \\
+        1 & 1 & 1 & 1 & 1 \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
     \item Los pines $\left\lbrace 2,3,4,5\right\rbrace$ serán las entradas digitales $\left\lbrace a,b,c,d\right\rbrace$.
     \item Los pines $\left\lbrace 6,7,8\right\rbrace $ se reservan para $f1$. Se deben implementar tres funciones: la suma de productos $(SDP)$, el producto de sumas $(PDS)$ y la función resuelta por conectivas $NAND/NAND$. 
     \begin{align*}
@@ -60,21 +115,20 @@ Programe en Arruino una lógica combinacional que resuelva el siguiente problema
     \end{align*}
 \end{itemize}
  
-\subsubsection{Conteste las preguntas:}
+\subsubsection{Reporte lo siguiente:}
 
-¿Cómo sería el circuito digital de cada una de las funciones implementadas?
-¿Como es la tabla de verdad experimental de cada salida versus la tabla teórica?
+\begin{itemize}
+    \item Incluya el código realizado con comentarios que permitan entender su función
+    \item Compare las tablas de verdad experimental obtenidas para $f1$ y $f2$ versus las tablas teóricas \ref{tab:tv_f1} y \ref{tab:tv_f2}
+\end{itemize}
 
 
 \subsection{Actividad 2}
-
-Programe las funciones de un Multiplexor 2x1, 4x1 y 8x1.
-Por otra parte, existe un circuito  combinacional que se comporta como la tabla de verdad mostrada en la Tabla \ref{tab:tv}.
-
+Sabiendo que existe un circuito lógico combinacional que se comporta la tabla de verdad mostrada en la Tabla \ref{tab:tv3}
 \begin{table}[H]
 \centering
 \caption{Comportamiento esperado de la estructura lógica.}
-\label{tab:tv}
+\label{tab:tv3}
 \begin{tabular}{ccc}
     \toprule 
     $a$ & $b$ & $F(a,b)$ \\ 
@@ -85,11 +139,22 @@ Por otra parte, existe un circuito  combinacional que se comporta como la tabla 
     1 & 1 & $c \oplus d$ \\ 
     \bottomrule
 \end{tabular} 
-
 \end{table}
+\subsubsection{Realice lo siguiente:}
+\begin{itemize}
+    \item Programe en arduino una función que se comporte como:
+    \begin{itemize}
+        \item Un multiplexor de 2x1 (codigo de referencia disponible en el Apéndice \ref{ApendiceA})
+        \item Un multiplexor de 4x1
+        \item Un multiplexor de 8x1
+    \end{itemize}
+    \item Utilice un multiplexor 8x1 con $a$ como variable ingresada para obtener el mismo comportamiento de la Tabla \ref{tab:tv3}
+    \item Utilice dos multiplexores 4x1 y uno 2x1 para obtener el mismo comportamiento que con el multiplexor 8x1
+\end{itemize}
 
-\subsubsection{Conteste las preguntas:}
+\subsubsection{Reporte lo siguiente:}
 
-¿El comportamiento de un multiplicador $8 \times 1$ coincide con la tabla teórica?
-En la funcion Loop() , llame la función del MUX  $8 \times 1$ e ingrese parámetros $\left\lbrace a,b,c,d \right\rbrace $ de tal forma que se comporte igual que la tabla de verdad presentada en el Cuadro \ref{tab:tv}.¿Tiene el mismo comportamiento?
-¿Es posible implementar la T.V. con dos MUX $4 \time 1$ y un MUX  $2 \time 1$?¿Como se implementa?
+\begin{itemize}
+    \item Incluya el código realizado con comentarios que permitan entender su función
+    \item Compare las tablas de verdad experimental obtenidas por el multiplexor 8x1 y la combinación de dos multiplexores 4x1 y uno 2x1 versus la tabla teórica \ref{tab:tv3}
+\end{itemize}
