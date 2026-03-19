@@ -1,0 +1,125 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tecnológico de Costa Rica/Instructivo de Laboratorio de Instrumentación I
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\documentclass[12pt,letterpaper]{report}
+\makeatletter
+\def\input@path{{../../common/}{./}{../data/}{../../student_templates/}{../../data/}{../../assets/images/}{../../fig/}}
+\makeatother
+\input{preamble}
+\usepackage{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{{../../assets/images/}{../../fig/}}
+\pagestyle{fancy}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+\geometry{left=18mm,right=18mm,top=21mm,bottom=21mm,headheight=15pt}
+
+%----------------------------------------------------------------------------------------
+\newcommand{\escuela}{Escuela de Ingeniería Electromecánica}
+\newcommand{\programa}{Ingeniería en Mantenimiento Industrial}
+\newcommand{\curso}{Laboratorio de Control Eléctrico}
+\lhead{Instructivo de \curso}
+\rhead{\begin{picture}(0,0) \put(-60,0){\includegraphics[width=20mm]{logo.png}} \end{picture}}
+\newcommand{\obj}{Objetivos}
+\newcommand{\mat}{Materiales y equipo}
+\newcommand{\pro}{Procedimiento}
+\newcommand{\capacidad}{Al finalizar este laboratorio el estudiante estará en capacidad de:}
+\newcommand{\antesde}{Antes de empezar el laboratorio presente el siguiente cuestionario lleno.}
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+
+\addto\captionsspanish{\renewcommand{\chaptername}{Laboratorio}}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{center}
+\vspace*{-0.5in}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=11cm]{logo.png}
+\end{center}
+\end{figure}
+\vspace*{0.4in}
+\begin{Large}
+ESCUELA DE INGENIERIA ELECTROMECANICA\\
+\vspace*{0.15in}
+AREA ELECTRICA\\
+\vspace*{0.8in}
+\end{Large}
+\vspace*{0.2in}
+\begin{Large}
+\textbf{Reporte: Laboratorio I} \\
+\vspace*{0.1in}
+\textbf{Introducción a Arduino}
+\end{Large}
+\vspace*{0.3in}\\
+\begin{center}
+    \begin{tabular}{c|c}
+        Nombre Apellido & Carné  \\
+        Nombre Apellido & Carné
+    \end{tabular}
+\end{center}
+\vspace*{2.5in}
+\begin{Large}
+\textbf{\today}\\
+\end{Large}
+\rule{80mm}{0.1mm}\\
+\vspace*{0.1in}
+\end{center}
+
+\end{titlepage}
+
+\tableofcontents
+
+% meter acá el contendido del instructivo
+
+\section{Resultados}
+
+\section{Análisis de resultados}
+
+\section{Conclusiones}
+
+Si desea citar algo lo puede hacer así \cite{margolis2020arduino}
+
+%----------------------------------------------------------------------------------------
+%	APPENDIX
+%----------------------------------------------------------------------------------------
+
+\appendix
+%inlcuir apendices acá
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliographystyle{ieeetr}
+
+\bibliography{referencias}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}
