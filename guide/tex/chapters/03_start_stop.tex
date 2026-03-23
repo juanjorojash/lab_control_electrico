@@ -1,4 +1,4 @@
-\chapter{Laboratorio: Arranque-pare sencillo y reversible.}
+\chapter{Arranque-pare sencillo y reversible.}
 
 
 \section{\obj}
@@ -32,81 +32,145 @@ Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. 
 \section{Práctica en Clase}
 
 \subsection{Actividad 1}
-
- Se desea seleccionar un arrancador térmico para dos motores que mueve una bomba de agua. El primer motor es de 100 hp, trifásico (3$\varnothing$), voltaje de línea 480 voltios, voltaje de control de 120 voltios. No se requiere gabinete. El segundo motor es de 50 hp, 3$\varnothing$, 240V, 60Hz, voltaje control 120 V, ambos a plena carga con factor de potencia 0.95 en atraso. Asuma eficiencias del motor de 86\%. Por ejemplo las bombas se usan en promedio 3 veces al día todos los días y se requiere que los contactores duren al menos 20 años. 
- 
-\subsubsection{Conteste las preguntas}
-
-¿Cual sería para ambos aplicaciones el modelo de arrancador con reveladores electrónicos con falla a tierra para la marca EATON según el catalogo \href{https://www.eaton.com/content/dam/eaton/products/industrialcontrols-drives-automation-sensors/nema-contactors-and-starters-v5-t2-ca08100006e.pdf}{\textit{NEMA Contactors and Starters}}, serie Freedom?. ¿Puede explicar porque se usa el mismo contactor para ambos casos?
-
-
-\subsection{Actividad 2}
   Los ingenieros Electricistas, electromecánicos y de Mantenimiento pueden diseñar sus circuitos de control eléctricos, sin embargo cada fabricante posee libros de diagramas estandarizados como el que brinda  Schneider con su documento \href{https://download.schneider-electric.com/files?p_enDocType=Catalog&p_File_Name=0140CT9201.pdf&p_Doc_Ref=0140CT9201&_ga=2.160182845.1491407618.1677858387-1733391740.1677858387}{\textit{Wiring Diagram Book}}\cite{Scheneider2}.
  
  Estudie toda la simbología NEMA, Tabla 1 y Tabla 2 de la referencia \cite{Scheneider2} y asocie los con el elementos físicos y su funcionamiento.
  Deduzca la ecuación lógica del circuito eléctrico de control, para esto use un mapa de Karnaugh o la ecuacion caracteristica del cerrojo S-R prioridad al reset.
  Realice el alambrado del circuito de control y luego del circuito de potencia del arranque sencillo de un motor trifásico de 1/2 hp.
 
-\newpage
-
 \begin{equation*}
     M^+ = \overline{P} \cdot \overline{Sc} \cdot (A+M)
 \end{equation*}
 
- \begin{figure}[H]
+\begin{figure}[H]
     \centering
-        \begin{tikzpicture}[circuit plc ladder,scale=1.5]
-        \draw(0,0)  
-        to [ncpb,l=$P$] ++ (1,0) coordinate(M1)
-        to [nopb,l=$A$] ++ (1,0) coordinate(M2)
-        to [esource, l=$M$] ++ (1,0)
-        to [contact NC={info={$Sc$}}] ++ (1,0) coordinate(laddertopright)
-        (M1) -- ++ (0,-0.5) 
-        to [contact NO={info={$M$}}] ++ (1,0) -- (M2)
-        ;
-        \ladderrungend{1}
-        \ladderpowerrails
-        \end{tikzpicture}
- \end{figure}
+    \begin{tikzpicture}[circuit plc ladder,scale=1.5]
+    \draw(0,0)  
+    to [ncpb,l=$P$] ++ (1,0) coordinate(M1)
+    to [nopb,l=$A$] ++ (1,0) coordinate(M2)
+    to [esource, l=$M$] ++ (1,0)
+    to [contact NC={info={$Sc$}}] ++ (1,0) coordinate(laddertopright)
+    (M1) -- ++ (0,-0.5) 
+    to [contact NO={info={$M$}}] ++ (1,0) -- (M2)
+    ;
+    \ladderrungend{1}
+    \ladderpowerrails
+    \end{tikzpicture}
+    \caption{Circuito de control: arranque-pare secillo}
+\end{figure}
 
- 
+\begin{figure}[H]
+\centering
+    \begin{circuitikz}[cute inductors,scale=0.7]
+    \node[esourceshape,name=motor] at (8,-2){};
+    \draw
+    (0,0) node[left]{$L_1$} 
+    --++ (1.5,0) coordinate(L11) -- ++ (0.5,0)
+    to [C,l=$M$] 
+    ++ (2,0) to [wfuse,l=$S_{c}$] ++ (2,0) -- (motor.120)
+    (0,-2) node[left]{$L_2$} 
+    --++ (1,0) coordinate(L21) -- ++ (1,0)
+    to [C,l=$M$] 
+    ++ (2,0) to [wfuse,l=$S_{c}$] ++ (2,0) -- (motor.180)
+    (0,-4) node[left]{$L_3$} 
+    --++ (0.5,0) coordinate(L31) -- ++ (1.5,0)
+    to [C,l=$M$] 
+    ++ (2,0) to [wfuse,l=$S_{c}$] ++ (2,0) -- (motor.240)
+    (motor.center) node{$M$}
+    ; 
+    
+    \end{circuitikz}
+    \caption{Circuito de potencia: arranque-pare secillo}
+    \label{fig:potencia-secuencial}
+\end{figure}
+
+
 \subsubsection{Conteste las preguntas:}
 
 ¿Es el circuito alambrado control a dos o tres hilos? Explique. ¿El circuito de control funcionó según la tabla de verdad?, Que pasa si se pierde una fase, como se comporta el circuito?. Que diferencia existe entre un arrancador automático y uno manual en el caso que exista un corte de flujo eléctrico? Explique.
  Hasta ahora los circuitos fueron representados según la norma NEMA, muestre el circuito de control y potencia según la simbología de la norma IEC.
 
-\subsection{Actividad 3}
+\subsection{Actividad 2}
 
 Deduzca el circuito de control de un arranque-pare-reversible. Realice el alambrado del circuito de control y luego del circuito de potencia del circuito para un trifásico de 1/2 hp.
 
 
- \begin{align*}
+\begin{align*}
     F^+ &= \overline{P} \cdot \overline{R} \cdot \overline{Sc} \cdot (A_F + F) \\
     R^+ &= \overline{P} \cdot \overline{F} \cdot \overline{Sc} \cdot (A_R + R)
- \end{align*}
+\end{align*}
 
- \begin{figure}[H]
+\begin{figure}[H]
     \centering
-        \begin{tikzpicture}[circuit plc ladder,scale=1.5]
-        \draw(0,0)  
-        to [ncpb,l=$P$] ++ (1,0) coordinate(AF1)
-        to [nopb,l=$A_F$] ++ (1,0) coordinate(AF2)
-        to [contact NC={info={$R$}}] ++ (1,0)
-        to [esource, l=$F$] ++ (1,0)
-        to [contact NC={info={$Sc$}}] ++ (1,0) coordinate(laddertopright)
-        (AF1) -- ++ (0,-0.5) 
-        to [contact NO={info={$F$}}] ++ (1,0) -- (AF2)
-        (M1) -- ++ (0,-2) coordinate(AR1)
-        to [nopb,l=$A_R$] ++ (1,0) coordinate(AR2)
-        to [contact NC={info={$F$}}] ++ (1,0)
-        to [esource, l=$R$] ++ (1,0) -- ++ (0,2)
-        (AR1) -- ++ (0,-0.5) 
-        to [contact NO={info={$R$}}] ++ (1,0) -- (AR2)
-        ;
-        \ladderrungend{1}
-        \ladderpowerrails
-        \end{tikzpicture}
- \end{figure}
+    \begin{tikzpicture}[circuit plc ladder,scale=1.5]
+    \draw(0,0)  
+    to [ncpb,l=$P$] ++ (1,0) coordinate(AF1)
+    to [nopb,l=$A_F$] ++ (1,0) coordinate(AF2)
+    to [contact NC={info={$R$}}] ++ (1,0)
+    to [esource, l=$F$] ++ (1,0)
+    to [contact NC={info={$Sc$}}] ++ (1,0) coordinate(laddertopright)
+    (AF1) -- ++ (0,-0.5) 
+    to [contact NO={info={$F$}}] ++ (1,0) -- (AF2)
+    (M1) -- ++ (0,-2) coordinate(AR1)
+    to [nopb,l=$A_R$] ++ (1,0) coordinate(AR2)
+    to [contact NC={info={$F$}}] ++ (1,0)
+    to [esource, l=$R$] ++ (1,0) -- ++ (0,2)
+    (AR1) -- ++ (0,-0.5) 
+    to [contact NO={info={$R$}}] ++ (1,0) -- (AR2)
+    ;
+    \ladderrungend{1}
+    \ladderpowerrails
+    \end{tikzpicture}
+    \caption{Circuito de control: arranque Estrella-Delta reversible}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}[cute inductors,scale=0.7]
+    \node[esourceshape,name=motor] at (10,-2){};
+    \draw
+    (0,0) node[left]{$L_1$} 
+    --++ (1.5,0) coordinate(L11) -- ++ (0.5,0)
+    to [C,l=$F$] 
+    ++ (2,0) -- ++ (1.5,0) coordinate(L12) -- ++ (0.5,0) coordinate(L13)
+    (0,-2) node[left]{$L_2$} 
+    --++ (1,0) coordinate(L21) -- ++ (1,0)
+    to [C,l=$F$] 
+    ++ (2,0) -- ++ (1,0) coordinate(L22) -- ++ (1,0) coordinate(L23) 
+    (0,-4) node[left]{$L_3$} 
+    --++ (0.5,0) coordinate(L31) -- ++ (1.5,0)
+    to [C,l=$F$] 
+    ++ (2,0) -- ++ (0.5,0) coordinate(L32) -- ++ (1.5,0) coordinate(L33)
+    (L31) 
+    to[short,*-] 
+    ++ (0,6) -- ++ (1.5,0) 
+    to [C,l=$R$] 
+    ++ (2,0) -- ++ (0.5,0) 
+    to[short,-*]
+    (L32)
+    (L21) 
+    to[short,*-] 
+    ++ (0,6) -- ++ (1,0) 
+    to [C,l=$R$] 
+    ++ (2,0) -- ++ (1.5,0) 
+    to[short,-*]
+    (L12)
+    (L11) 
+    to[short,*-] 
+    ++ (0,6) -- ++ (0.5,0) 
+    to [C,l=$R$] 
+    ++ (2,0) -- ++ (1,0) 
+    to[short,-*]
+    (L22)
+    (L13) to[wfuse,l=$S_{c}$] ++ (2,0) -- (motor.120)
+    (L23) to[wfuse,l=$S_{c}$] ++ (2,0) -- (motor.180)
+    (L33) to[wfuse,l=$S_{c}$] ++ (2,0) -- (motor.240)
+    (motor.center) node{$M$}
+    ;
+    \end{circuitikz}
+    \caption{Circuito de potencia: arranque Estrella-Delta reversible}
+    \label{fig:potencia-estrella-delta}
+\end{figure}
 
 \subsubsection{Conteste las preguntas:} 
 

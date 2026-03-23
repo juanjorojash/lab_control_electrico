@@ -1,4 +1,4 @@
-\chapter{Laboratorio:  Arranques a tensión reducida y circuitos temporizados.}
+\chapter{Arranques a tensión reducida y circuitos temporizados.}
 
 \section{\obj}
 \capacidad
@@ -207,6 +207,44 @@ Realice un arranque pare reversible para un motor que arranca en estrella-delta.
 
 \begin{figure}[H]
 \centering
+    \begin{tikzpicture}[circuit plc ladder,scale=1.3]
+    \draw(0,0)  
+    to [ncpb,l=$P$] ++ (1,0) coordinate(AF1)
+    to [nopb,l=$A_F$] ++ (1,0) coordinate(AF2)
+    to [contact NC={info={$R$}}] ++ (1,0)
+    to [esource, l=$F$] ++ (1,0) 
+    to [contact NC={info={$S_c$}}] ++ (1,0) coordinate(laddertopright)
+    (AF1) -- ++ (0,-0.5) 
+    to [contact NO={info={$F$}}] ++ (1,0) -- (AF2)
+    (AF1) -- ++ (0,-1.5) coordinate(AR1)
+    to [nopb,l=$A_R$] ++ (1,0) coordinate(AR2)
+    to [contact NC={info={$F$}}] ++ (1,0)
+    to [esource, l=$R$] ++ (1,0) -- ++ (0,1.5)
+    (AR1) -- ++ (0,-0.5) 
+    to [contact NO={info={$R$}}] ++ (1,0) -- (AR2)
+    (0,-4)
+    to [contact NO={info={$R$}}] ++ (1,0)
+    (0,-3)
+    to [contact NO={info={$F$}}] ++ (1,0) coordinate(FR) -- ++ (2,0)
+    to [esource, l=$T_{on}$] ++ (1,0) -- ++ (0,1.5)
+    (FR) -- ++ (0,-1) 
+    to [contact NC={info={$T_{on}$}}] ++ (1,0)
+    to [contact NC={info={$D$}}] ++ (1,0)
+    to [esource, l=$E$] ++ (1,0)
+    (FR) ++ (0,-1) --++ (0,-1)
+    to [contact NO={info={$T_{on}$}}] ++ (1,0)
+    to [contact NC={info={$E$}}] ++ (1,0)
+    to [esource, l=$D$] ++ (1,0) -- ++ (0,2)   
+    ;
+    \ladderrungend{6}
+    \ladderpowerrails
+    \end{tikzpicture}
+    \caption{Circuito de control: arranque Estrella-Delta Reversible}
+    \label{fig:control-estrella-delta}
+\end{figure}
+
+\begin{figure}[H]
+\centering
     \begin{circuitikz}[cute inductors,scale=0.7]
     \draw
     (0,0) node[left]{$L_1$} 
@@ -291,44 +329,6 @@ Realice un arranque pare reversible para un motor que arranca en estrella-delta.
     \end{circuitikz}
     \caption{Circuito de potencia: arranque Estrella-Delta Reversible}
     \label{fig:potencia-estrella-delta}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-    \begin{tikzpicture}[circuit plc ladder,scale=1.3]
-    \draw(0,0)  
-    to [ncpb,l=$P$] ++ (1,0) coordinate(AF1)
-    to [nopb,l=$A_F$] ++ (1,0) coordinate(AF2)
-    to [contact NC={info={$R$}}] ++ (1,0)
-    to [esource, l=$F$] ++ (1,0) 
-    to [contact NC={info={$S_c$}}] ++ (1,0) coordinate(laddertopright)
-    (AF1) -- ++ (0,-0.5) 
-    to [contact NO={info={$F$}}] ++ (1,0) -- (AF2)
-    (AF1) -- ++ (0,-1.5) coordinate(AR1)
-    to [nopb,l=$A_R$] ++ (1,0) coordinate(AR2)
-    to [contact NC={info={$F$}}] ++ (1,0)
-    to [esource, l=$R$] ++ (1,0) -- ++ (0,1.5)
-    (AR1) -- ++ (0,-0.5) 
-    to [contact NO={info={$R$}}] ++ (1,0) -- (AR2)
-    (0,-4)
-    to [contact NO={info={$R$}}] ++ (1,0)
-    (0,-3)
-    to [contact NO={info={$F$}}] ++ (1,0) coordinate(FR) -- ++ (2,0)
-    to [esource, l=$T_{on}$] ++ (1,0) -- ++ (0,1.5)
-    (FR) -- ++ (0,-1) 
-    to [contact NC={info={$T_{on}$}}] ++ (1,0)
-    to [contact NC={info={$D$}}] ++ (1,0)
-    to [esource, l=$E$] ++ (1,0)
-    (FR) ++ (0,-1) --++ (0,-1)
-    to [contact NO={info={$T_{on}$}}] ++ (1,0)
-    to [contact NC={info={$E$}}] ++ (1,0)
-    to [esource, l=$D$] ++ (1,0) -- ++ (0,2)   
-    ;
-    \ladderrungend{6}
-    \ladderpowerrails
-    \end{tikzpicture}
-    \caption{Circuito de control: arranque Estrella-Delta Reversible}
-    \label{fig:control-estrella-delta}
 \end{figure}
 
 \subsubsection{Conteste las preguntas:} 
