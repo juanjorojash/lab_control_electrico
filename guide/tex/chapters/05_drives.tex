@@ -3,21 +3,19 @@
 \section{\obj}
 \capacidad
 \begin{itemize}
-	{\small
     \item  Alambrar el circuito de control y potencia del variador.
     \item  Programar un variador de frecuencia segun los requerimientos. 
 	\item Alambrar el arrancador suave para un motor trifásico.
 	\item Alambrar un arranque pare reversible usando un arrancador suave de un motor trifásico.
 	\item Programar el variador de frecuencia.
 	\item Medir el tiempo de las rampas de aceleración y desaceleración, y vincular con los parámetros programados.
- }
 \end{itemize} 
 
  
 \section{Equipos y materiales}
 Para este laboratorio de necesitaran:
 \begin{itemize}
-	{\small \item 1 motor trifásico 1/2 hp de 3 puntas.
+	\item 1 motor trifásico 1/2 hp de 3 puntas.
 	\item 1 variador de frecuencia: \href{https://search.abb.com/library/Download.aspx?DocumentID=3AUA0000066143&LanguageCode=en&DocumentPartId=1&Action=Launch}{ABB ACS355} o \href{https://vfds.com/content/manuals/delta/delta-vfd-el-manual.pdf}{VFD-EL}
 	\item 1 arrancador suave SIEMENS RW3013.
 	\item 2 contactores.
@@ -26,7 +24,6 @@ Para este laboratorio de necesitaran:
 	\item 3 interruptores N.O.
 	\item 1 amperimetro de gancho con medición INRUSH.
 	\item 1 analizador de señales trifásico FLUKE 143B.
-}
 \end{itemize}
 
 \section{Metodología}
@@ -51,20 +48,80 @@ Implemente un circuito de control y potencia para que el motor arranque en dos s
         to [contact NC={info={$Sc$}}] ++ (1,0) coordinate(laddertopright)
         (AF1) -- ++ (0,-0.5) 
         to [contact NO={info={$F$}}] ++ (1,0) -- (AF2)
-        (M1) -- ++ (0,-2) coordinate(AR1)
+        (AF1) -- ++ (0,-2) coordinate(AR1)
         to [nopb,l=$A_R$] ++ (1,0) coordinate(AR2)
         to [contact NC={info={$F$}}] ++ (1,0)
         to [esource, l=$R$] ++ (1,0) -- ++ (0,2)
         (AR1) -- ++ (0,-0.5) 
         to [contact NO={info={$R$}}] ++ (1,0) -- (AR2)
-        ;
-		\draw(0,-3) to [contact NO={info={$F$}}] ++ (1,0) -- + (0,-1) 
-		to [generic] ++ (1,0) -- (5,-3)
+		(0,-3.5) 
+		to [contact NO={info={$F$}}] ++ (3,0) -- ++ (0,-1.2) node[above right]{1}
+		(0,-4.2)
+		to [contact NO={info={$R$}}] ++ (3,0)
+		(0,-5) -- ++ (3,0) node[above,xshift=-0.9cm]{$A_1$} node[above,xshift=0.9cm]{$A_2$} node[draw,fill=white,minimum width=1.2cm,minimum height=1.2cm] {} -- ++ (2,0)
 		;
-        \ladderrungend{5}
+        \ladderrungend{6}
         \ladderpowerrails
         \end{tikzpicture}
+		\caption{Circuito de control: arrancador suave}
  \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}[cute inductors,scale=0.7]
+    \node[esourceshape,name=motor] at (14,-2){};
+    \draw
+    (0,0) node[left]{$L_1$}
+    -- ++ (1.5,0) coordinate(L11) -- ++ (0.5,0)
+    to [C,l=$F$]
+    ++ (2,0) -- ++ (1.5,0) coordinate(L12) -- ++ (0.5,0) coordinate(L13)
+    (0,-2) node[left]{$L_2$}
+    -- ++ (1,0) coordinate(L21) -- ++ (1,0)
+    to [C,l=$F$]
+    ++ (2,0) -- ++ (1,0) coordinate(L22) -- ++ (1,0) coordinate(L23)
+    (0,-4) node[left]{$L_3$}
+    -- ++ (0.5,0) coordinate(L31) -- ++ (1.5,0)
+    to [C,l=$F$]
+    ++ (2,0) -- ++ (0.5,0) coordinate(L32) -- ++ (1.5,0) coordinate(L33)
+    (L31)
+    to[short,*-]
+    ++ (0,6) -- ++ (1.5,0)
+    to [C,l=$R$]
+    ++ (2,0) -- ++ (0.5,0)
+    to[short,-*]
+    (L32)
+    (L21)
+    to[short,*-]
+    ++ (0,6) -- ++ (1,0)
+    to [C,l=$R$]
+    ++ (2,0) -- ++ (1.5,0)
+    to[short,-*]
+    (L12)
+    (L11)
+    to[short,*-]
+    ++ (0,6) -- ++ (0.5,0)
+    to [C,l=$R$]
+    ++ (2,0) -- ++ (1,0)
+    to[short,-*]
+    (L22)
+    (L13) -- ++ (1.2,0) coordinate(SSin1)
+    (L23) -- ++ (1.2,0) coordinate(SSin2)
+    (L33) -- ++ (1.2,0) coordinate(SSin3)
+    (SSin2) ++ (1.4,0) node[draw,minimum width=2.0cm,minimum height=4.0cm] (ss) {}
+    (SSin1) -- (ss.west |- SSin1)
+    (SSin2) -- (ss.west)
+    (SSin3) -- (ss.west |- SSin3)
+    (ss.east |- SSin1) coordinate(SSout1)
+    (ss.east) coordinate(SSout2)
+    (ss.east |- SSin3) coordinate(SSout3)
+    (SSout1) to [wfuse,l=$S_{c}$] ++ (2,0) -- (motor.120)
+    (SSout2) to [wfuse,l=$S_{c}$] ++ (2,0) -- (motor.180)
+    (SSout3) to [wfuse,l=$S_{c}$] ++ (2,0) -- (motor.240)
+    (motor.center) node{$M$}
+    ;
+    \end{circuitikz}
+    \caption{Circuito de potencia: arrancador suave reversible}
+\end{figure}
 
 
 \subsubsection{Conteste las preguntas}

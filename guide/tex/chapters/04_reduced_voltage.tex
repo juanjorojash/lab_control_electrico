@@ -3,21 +3,18 @@
 \section{\obj}
 \capacidad
 \begin{itemize}
-	{\small
-	 \item Diseñar un circuito secuencial temporizado que permita arrancar un motor en tensión reducida utilizando el método de estrella delta.
-    \item  Diseñar un circuito secuencial temporizado que permita arrancar un motor mediante auto-transformador.
-    \item  Diseñar un circuito secuencial temporizado que permita arrancar en cascada dos motores y apagarlos en cascada. 
-	 \item Alambrar el circuito de control y potencia.
-	 \item Detectar fallas en circuitos alambrados con lógica cableada.
-	 
- }
+	\item Diseñar un circuito secuencial temporizado que permita arrancar un motor en tensión reducida utilizando el método de estrella delta.
+    \item Diseñar un circuito secuencial temporizado que permita arrancar un motor mediante auto-transformador.
+    \item Diseñar un circuito secuencial temporizado que permita arrancar en cascada dos motores y apagarlos en cascada. 
+	\item Alambrar el circuito de control y potencia.
+	\item Detectar fallas en circuitos alambrados con lógica cableada.
 \end{itemize} 
 
  
 \section{Equipos y materiales}
 Para este laboratorio de necesitaran:
 \begin{itemize}
-	{\small \item 2 motor trifásico 1/2 hp de 3 puntas.
+    \item 2 motor trifásico 1/2 hp de 3 puntas.
 	\item 1 motor trifásico 1/2 hp de 6 puntas.
 	\item 2 relevadores térmico.
 	\item 4 contactores.
@@ -27,16 +24,23 @@ Para este laboratorio de necesitaran:
 	\item 1 temporizador Off-Delay.
 	\item 1 amperimetro de gancho con medición INRUSH.
 	\item 1 Analizador de señales Fluke 143B
-}
 \end{itemize}
 
 \subsection{Arranque a tensión reducida}
 
 Los arranques a tensión reducida buscan reducir el voltaje que alimenta los devanados estatóricos para que en el momento del arranque la corriente de línea se reduzca.
 
-El arranque por autotranformador, utilizado en motores trifásicos de inducción jaula de árdilla de tres terminales, permite reducir tanto el voltaje de línea como la corriente de linea que consume el motor. Si la relacion de tranformacion es $a=V_{out}/V_{in}$, donde $V_{out}$ es el voltaje hacia el motor y $V_{in}$ es el voltage de la red. La corriente de línea antes del autotransformador es $I_{linea} = a^{2}\cdot I_{arr}$, donde $I_{arr}$ es la corriente de arranque a tensión plena. La Figura \ref{fig:control-auto-transformador} muestra el circuito de potencia y control para el arranque por auto-transformador.
 
-Los motores trifásicos de indución jaula de ardilla de seis puntas se pueden arrancar realizando una reconfiguración de su devanado. Durante el régimen transitorio  sus devanados se alambran en estrella ($\leftthreetimes$) y cuando su velocidad alcanza el 80\% aproximadamente se realiza la re-conexión en delta ( $\Delta$) de los devanados. Esto permiten reducir el voltaje en $\sqrt{3}$ y la corriente de arranque se reduce a un tercio de la original. La Figura \ref{fig:potencia-estrella-delta} muestra el circuito de potencia para el arranque $\leftthreetimes-\Delta$.
+El arranque por autotranformador, utilizado en motores trifásicos de inducción jaula de árdilla de tres terminales, permite reducir tanto el voltaje de línea como 
+la corriente de linea que consume el motor. Si la relacion de tranformacion es $a=V_{out}/V_{in}$, donde $V_{out}$ es el voltaje hacia el motor y $V_{in}$ es el voltage de la red. 
+La corriente de línea antes del autotransformador es $I_{linea} = a^{2}\cdot I_{arr}$, donde $I_{arr}$ es la corriente de arranque a tensión plena. 
+La Figura \ref{fig:control-auto-transformador} muestra el circuito de potencia y control para el arranque por auto-transformador.
+
+
+Los motores trifásicos de indución jaula de ardilla de seis puntas se pueden arrancar realizando una reconfiguración de su devanado. Durante el régimen transitorio 
+sus devanados se alambran en estrella ($\leftthreetimes$) y cuando su velocidad alcanza el 80\% aproximadamente se realiza la re-conexión en delta ( $\Delta$) de los devanados.
+Esto permiten reducir el voltaje en $\sqrt{3}$ y la corriente de arranque se reduce a un tercio de la original. La Figura \ref{fig:potencia-estrella-delta} muestra el circuito
+de potencia para el arranque $\leftthreetimes-\Delta$.
 
 \section{Metodología}
 
@@ -76,6 +80,7 @@ Realice un arranque-pare secuencial para dos motores trifásicos de tres puntas.
     \caption{Circuito de control: arranque-pare secuencial de dos motores}
     \label{fig:control-secuencial}
 \end{figure}
+
 
 \begin{figure}[H]
 \centering
