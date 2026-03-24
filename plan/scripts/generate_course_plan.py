@@ -1,7 +1,6 @@
 import pandas as pd
 import subprocess
 from pathlib import Path
-import os
 from pylatex import Document, Package, Chapter, Section, Subsection, Subsubsection, Command,\
     Tabularx, LongTabularx, PageStyle, Head, Foot, NewPage,\
     VerticalSpace, HorizontalSpace, NewLine, Itemize, MiniPage, StandAloneGraphic,TextColor,\
@@ -11,23 +10,25 @@ from pylatex.base_classes import Environment, Arguments
 from pylatex.utils import NoEscape, bold, italic
 from datetime import date, timedelta
 
-root = Path(__file__).resolve().parent.parent
+root = Path(__file__).resolve().parents[2]
 
 plan_dir = root / "plan"
+plan_data_dir = plan_dir / "data"
+plan_assets_dir = plan_dir / "assets"
+plan_pdf_dir = plan_dir / "pdf"
+plan_tex_dir = plan_dir / "tex"
 pdf_dir = plan_dir / "pdf"
-pdf_dir.mkdir(parents=True, exist_ok=True)
-images_dir = root / "fig"
 
-course = "Electrical Control Lab"
-id = "MI"
+course = "Lab Control Eléctrico"
 
-
-content = pd.read_csv(plan_dir / f"course_plan.csv").fillna("")
+content = pd.read_csv(plan_data_dir / "plan.csv").fillna("")
 
 print(content.head())
 
 
-def make_plan_pdf(id,course,images_dir):
+def make_plan_pdf(course,images_dir):
+    plan_pdf_dir.mkdir(parents=True, exist_ok=True)
+    plan_tex_dir.mkdir(parents=True, exist_ok=True)
     logo_path = (images_dir / "logo.png").as_posix()
     # Opciones de geometría
     geometry_options = { 
@@ -131,10 +132,30 @@ def make_plan_pdf(id,course,images_dir):
 
 
 
-    doc.generate_pdf(pdf_dir / 'electrical_control_lab', clean=True, clean_tex=True, compiler='lualatex', silent=True)
+    tex_target = plan_tex_dir / course
+    tex_file = tex_target.with_suffix(".tex")
+    pdf_target = plan_pdf_dir / f"{course}.pdf"
 
-make_plan_pdf(id,course,images_dir)
+    doc.generate_tex(filepath=str(tex_target))
+    subprocess.run(
+        [
+            "lualatex",
+            f"-output-directory={plan_pdf_dir}",
+            "-interaction=nonstopmode",
+            str(tex_file),
+        ],
+        check=True,
+        cwd=plan_dir,
+        capture_output=True,
+        text=True,
+    )
+
+    generated_pdf = plan_pdf_dir / tex_file.with_suffix(".pdf").name
+    if generated_pdf != pdf_target and generated_pdf.exists():
+        generated_pdf.replace(pdf_target)
+
+make_plan_pdf(course,plan_assets_dir)
 
 for ext in ("*.aux", "*.bcf", "*.bbl", "*.blg", "*.log", "*.run.xml"):
-    for junk in pdf_dir.glob(ext):
+    for junk in plan_pdf_dir.glob(ext):
         junk.unlink()

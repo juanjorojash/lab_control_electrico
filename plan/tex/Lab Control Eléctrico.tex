@@ -1,0 +1,56 @@
+\documentclass[10pt,letterpaper,landscape]{article}%
+\usepackage{lastpage}%
+\usepackage{parskip}%
+\usepackage{geometry}%
+\geometry{left=10mm,right=5mm,top=21mm,bottom=21mm,headheight=15mm,footskip=10mm}%
+\usepackage{fontspec}%
+\usepackage[spanish,activeacute]{babel}%
+\usepackage{anyfontsize}%
+\usepackage{fancyhdr}%
+\usepackage{csquotes}%
+\usepackage[ampersand]{easylist}%
+\usepackage[style=ieee,backend=biber]{biblatex}%
+\usepackage[skins,breakable]{tcolorbox}%
+\usepackage{booktabs}%
+\usepackage{textcomp}%
+\usepackage[pdfencoding=auto,unicode,bookmarks=false,colorlinks=false,pdfborder=\{0 0 0\},pdftitle=Lab Control Eléctrico,pdfauthor=\{Juan J. Rojas\},pdfsubject=\{Course Plan\}]{hyperref}%
+\usepackage{color}%
+\usepackage{tikz}%
+\usepackage{tabularx}%
+\usepackage{longtable}%
+\usepackage{ltablex}%
+%
+\definecolor{gris}{rgb}{0.27,0.27,0.27}%
+\definecolor{verde}{rgb}{0.051,0.733,0.447}%
+\definecolor{azul}{rgb}{0.02,0.455,0.773}%
+\setmainfont{Latin Modern Roman}%
+\setlength{\LTpre}{0pt}%
+\setlength{\LTpost}{0pt}%
+\setlength\LTleft{0pt}%
+\setlength\LTright{0pt}%
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}%
+\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}\vspace{2pt}}m{#1}}%
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}%
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}%
+\newcolumntype{T}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}\vspace{2pt}}m{#1}}%
+\newcolumntype{N}{@{}m{0pt}@{}}%
+%
+\begin{document}%
+\normalsize%
+\begin{tikzpicture}[overlay,remember picture]%
+\node[inner sep = 0mm,outer sep = 0mm,anchor = north west,xshift = 220mm,yshift = 20mm] at (0.0,0.0) {\includegraphics[width=5cm]{C:/repositories/lab_control_electrico/plan/assets/logo.png}};%
+\end{tikzpicture}%
+\vspace*{20mm}%
+\newline%
+\renewcommand{\arraystretch}{1.5}%
+\begin{tabularx}{\textwidth}{| C{0.04\linewidth} | L{0.24\linewidth} | L{0.24\linewidth} | L{0.18\linewidth} | L{0.18\linewidth} |}%
+\hline%
+\multicolumn{5}{c}{\textbf{Plan del curso Lab Control Eléctrico}}\\%
+\hline%
+Sem.&Tema&Objetivo&Metodología&Entregables\\%
+\hline%
+\endhead%
+2&Introducción a Arduino&Pendinete&Práctica 1&\\%
+\hline%
+\end{tabularx}%
+\end{document}
