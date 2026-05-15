@@ -40,11 +40,19 @@ Este laboratorio tiene una duración de 4 lecciones, repartidas en dos semanas. 
 
 \subsection{Actividad 2}
 
+Diseñe el programa para el controlador LOGO!, que resuelva el siguiente problema:
 
-Diseñe el programa para el controlador LOGO!, que resuelva el siguiente problema.
-
-Se necesita un alternador de bombas  para el llenado de un tanque de almacenamiento. El taque posee tres niveles, NA nivel alto, NB nivel bajo y Nivel Crítico NC, además existen 2 bombas B1 y B2. Cuando el agua activa NB la bomba B1 se activa y se apaga hasta alcanzar el nivel NA. La próxima vez que se active el sensor NB se activa la segunda bomba B2 y se apaga hasta alcanzar NA. Este ciclo se repite hasta que se presione el apagado general del sistema o se active una de las dos sobrecargas. Si el nivel crítico se presiona NC se encienden ambas bombas, además el sistema debe  recordar el orden de la alternancia. El sistema cuenta con dos botoneras para el arranque y pare general del sistema. El sistema deberá mostrar en pantalla en todo momento,  el estado de la bombas y la etapa lógica en que se encuentra el sistema.
-
+\begin{itemize}
+	\item Se necesita un alternador de bombas  para el llenado de un tanque de almacenamiento. El sistema cuenta con dos botoneras para el arranque y pare general del sistema.
+	\item El taque posee tres niveles: nivel alto (NA), nivel bajo (NB) y nivel crítico (NC).
+	\item Además, se tienen dos bombas: B1 y B2
+	\item Cuando el agua activa NB la bomba B1 se activa y se apaga hasta alcanzar el nivel NA.
+	\item La próxima vez que se active el sensor NB se activa la segunda bomba B2 y se apaga hasta alcanzar NA.
+	\item Este ciclo se repite hasta que se presione el apagado general del sistema o se active una de las dos sobrecargas.
+	\item Si el nivel crítico se presiona NC se encienden ambas bombas, además el sistema debe  recordar el orden de la alternancia.
+	\item El software LOGO! Soft Comfort deberá mostrar en pantalla el estado de la bombas y la etapa lógica en que se encuentra el sistema.
+\end{itemize}
+     
 Una vez simulada la solución, procederá a cargarla y alambrar el LOGO!. Para esto requerirá de las botoneras pulsadoras, contactores y finales de carrera que emulan los niveles de la boyas, etc. 
 
 % \begin{figure}
@@ -58,10 +66,13 @@ Una vez simulada la solución, procederá a cargarla y alambrar el LOGO!. Para e
 %     \label{fig:enter-label}
 % \end{figure}
 
+\subsubsection{Reporte lo siguiente}
 
-\subsubsection{Conteste las preguntas}
-
-¿Puede mostrar el diagrama lógico de la solución?, ¿Puede mostrar el diagrama de la implementación con sus  ecuaciones lógicas?, ¿Puede mostar el diagrama de conexión eléctrico?.¿Cuando es el ciclo de escaneo de la solución? La ultima pregunta se contesta implementando el código que se aporta en apéndice B del manual \cite{LOGO1}.
+\begin{itemize}
+	\item El diagrama lógico de la solución.
+	\item El diagrama de la implementación con sus  ecuaciones lógicas.
+	\item El diagrama de conexión eléctrico.
+\end{itemize}
 
 \subsection{Actividad 3}
 Diseñe el programa para el controlador LOGO!, que resuelva el siguiente problema.
@@ -77,14 +88,17 @@ El sistema debe funcionar con la siguiente lógica:
 \begin{itemize}
 	\item Si el sistema esta en modo manual, el arranque y pare se realiza desde las botoneras. Si a los 3 segundos no existe la señal de confirmación de presión, aparece en pantalla del LOGO! un mensaje indicando que la bomba no levanta presión, y se desactiva el enclave-miento de  la señal del motor.
 	\item Por otra parte, si la maneta esta en la posición de modo automático, la bomba X se enciende a las 5PM y se apaga a las 10PM. El arranque y pare de las moto-bombas es de forma alternada. Es decir, si el Lunes arranca la  moto-bomba B1, el Martes deberá arrancar la moto-bomba B2 y así sucesivamente. Si la confirmación de presión no se recibe en un lapso de 3 segundo, el sistema cambiará a la otra bomba y mostrara en pantalla el aviso del cambio.	
-	\item Adicionalmente, existe un  contador que indica en pantalla del LOGO!, la cantidad de ciclos de la bomba 1 y de la bomba 2. Cuando los ciclos realizados sean igual a 10 aparecerá en pantalla un mensaje indicando : “La bomba Bx requiere mantenimiento”. En pantalla se debe indicar la etapa lógica del sistema.
+	\item Adicionalmente, existe un contador que indica en pantalla del LOGO!, la cantidad de ciclos de la bomba 1 y de la bomba 2. Cuando los ciclos realizados sean igual a 10 aparecerá en pantalla un mensaje indicando : “La bomba Bx requiere mantenimiento”. En pantalla se debe indicar la etapa lógica del sistema.
 \end{itemize} 
 
+\subsubsection{Reporte lo siguiente}
 
+\begin{itemize}
+	\item El diagrama lógico de la solución.
+	\item El diagrama de la implementación con sus ecuaciones lógicas.
+	\item El diagrama de conexión eléctrico.
+\end{itemize}
 
-
-\subsubsection{Conteste las preguntas}
-¿Puede mostrar el diagrama lógico de la solución?, ¿Puede mostrar el diagrama de la implementación con sus  ecuaciones lógicas?, ¿Puede mostar el diagrama de conexión eléctrico?.¿Cuando es el ciclo de escaneo de la solución? La ultima pregunta se contesta implementando el código que se aporta en apéndice B del manual \cite{LOGO1}.
 
 
 
